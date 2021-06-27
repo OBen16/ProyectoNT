@@ -1,12 +1,11 @@
 library(haven)
-datos<-read_sav("Pruebasproyecto/datos.sav")
 library(tidyverse)
 library(ggplot2)
 library(forcats)
-datos2<-datos %>% filter(C24>=1)
-datos3<-datos %>% filter(C24>=10)
-nousa<-datos %>% filter(C9==2 & C24!=99)
-datos11<-datos %>% filter(C24==11)
+
+datos <- read_sav("Pruebasproyecto/datos.sav")
+nousa <- datos %>% filter(C9==2 & C24!=99)
+
 ggplot(nousa,aes(x=fct_rev(fct_infreq(as.factor(C24))),fill=as.factor(C24)))+geom_bar(stat = "count")+scale_x_discrete(labels=c(
   "1"="No sabe como podria servirle",
   "2"="No sabe usarlo",
@@ -71,7 +70,6 @@ datos%>%filter(!is.na(C13_2))%>%
   ggplot(aes(x=as.factor(niveledu),fill=as.factor(C13_2)))+geom_bar(position = "fill")
 
 
-
 #Uso de internet por nivel educativo
 datos$C11
 datos%>%filter(!is.na(C11))%>%
@@ -81,4 +79,18 @@ datos%>%filter(!is.na(C11))%>%
 datos$C9_1
 datos%>%filter(!is.na(C9_1))%>%
   ggplot(aes(x=as.factor(niveledu),fill=as.factor(C9_1)))+geom_bar(position = "fill")
+
+
+# Genera indice uso de redes sociales agrupando todas las redes.
+datos = datos %>% replace_na(list(C18_1 = 4, C18_2 =4,  C18_3 =4,  C18_4 =4, C18_5 =4, C18_6 =4, C18_7 = 4))
+datos = mutate(datos, uso_redes_sociales =  1 - ( (( ( C18_1 + C18_2 + C18_3 + C18_4 + C18_5 + C18_6 + C18_7) / 7 ) - 1 ) / 3 )  )
+
+datos$uso_redes_sociales = datos$uso_redes_sociales %>% replace_na(0)
+
+datos %>%
+  group_by(DOMDEPARTAMENTO) %>%
+  summarise(
+    media_uso_redes_sociales = mean(uso_redes_sociales, na.rm = TRUE)
+  ) %>%
+  ggplot(aes(x = DOMDEPARTAMENTO, y = media_uso_redes_sociales)) + geom_point()
 
