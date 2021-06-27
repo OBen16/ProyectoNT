@@ -66,4 +66,19 @@ ggplot(datos, aes(fill = as.factor(C9), x = fct_reorder(as.factor(DOMDEPARTAMENT
                                                                                              "16"="San José",
                                                                                              "18"="Tacuarembó"))
 
+#Frecuencia de uso de internet en el trabajo por nivel educativo
+datos%>%filter(!is.na(C13_2))%>%
+  ggplot(aes(x=as.factor(niveledu),fill=as.factor(C13_2)))+geom_bar(position = "fill")
+
+
+
+#Uso de internet por nivel educativo
+datos$C11
+datos%>%filter(!is.na(C11))%>%
+  ggplot(aes(x=as.factor(niveledu),fill=as.factor(C11)))+geom_bar(position = "fill")
+
+#Uso de redes sociales por nivel educativo
+datos$C9_1
+datos%>%filter(!is.na(C9_1))%>%
+  ggplot(aes(x=as.factor(niveledu),fill=as.factor(C9_1)))+geom_bar(position = "fill")
 
