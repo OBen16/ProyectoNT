@@ -1,5 +1,5 @@
 ---
-title: "UsoTecnologia2019Uruguay"
+title: "Uso de la Tecnología de la Información y Comunicaciones (EUTIC) en Uruguay 2019"
 output: pdf_document
 ---
 
@@ -7,22 +7,29 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+## Introduccion
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+En este documento se presenta un analizis estadistico descriptivo de una muestra aleatoria tomada por el
+INE en un marco poblacional de Uruguay sobre el uso de la tecnologia. La encuesta fue realizada en el 2019 y consta de una muestra 
+aleatoria de 2341 personas de todos los departamentos de Uruguay.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+Dado el impacto que genera en la sociedad el uso y la distribucion de la tecnologia, es de especial interes 
+obtener medidas y proyecciones que permitan entender el estado actual de desarrollo en Uruguay. Desde esta perspectiva se pueden obtener
+resultados que reflejen situaciones criticas como la influencia del nivel educativo en el uso de Internet o la influencia
+de la region en el mismo.
 
-```{r cars}
-summary(cars)
+Para hacer el analizis exploratorio de los datos se utilizan herramientas estadisticas como R, Rstudio y el paquete Shinny. Mediante Shinny se busca generar un entorno interactivo que permita modificar las relaciones planteadas a modo de lograr una mayor diversidad de estudio para 
+el usuario.
+
+Se organizo el documento en 3 enfoques principales: asociacion del uso de redes sociales y su caracterizacion por departamentos, profundizar las razones de porque no se utiliza Interent en la poblacion, mostrar la insidencia en el uso de Internet por nivel educativo.
+
+
+
+
+
+
+
+```{r }
 ```
 
-## Including Plots
 
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
