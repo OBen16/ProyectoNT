@@ -1,5 +1,5 @@
 library(haven)
-datos<-read_sav("datos.sav")
+datos<-read_sav("Pruebasproyecto/datos.sav")
 library(tidyverse)
 library(ggplot2)
 library(forcats)
@@ -65,3 +65,5 @@ ggplot(datos, aes(fill = as.factor(C9), x = fct_reorder(as.factor(DOMDEPARTAMENT
                                                                                              "14"="Rocha",
                                                                                              "16"="San José",
                                                                                              "18"="Tacuarembó"))
+
+
