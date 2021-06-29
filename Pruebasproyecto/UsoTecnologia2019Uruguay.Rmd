@@ -7,21 +7,22 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Introduccion
+## Introducción
 
-En este documento se presenta un analizis estadistico descriptivo de una muestra aleatoria tomada por el
-INE en un marco poblacional de Uruguay sobre el uso de la tecnologia. La encuesta fue realizada en el 2019 y consta de una muestra 
+En este documento se presenta un análisis estadístico descriptivo de una muestra aleatoria tomada por el
+INE en un marco poblacional de Uruguay sobre el uso de la tecnología. La encuesta fue realizada en el 2019 y consta de una muestra 
 aleatoria de 2341 personas de todos los departamentos de Uruguay.
 
-Dado el impacto que genera en la sociedad el uso y la distribucion de la tecnologia, es de especial interes 
+Dado el impacto que genera en la sociedad el uso y la distribución de la tecnología, es de especial interés 
 obtener medidas y proyecciones que permitan entender el estado actual de desarrollo en Uruguay. Desde esta perspectiva se pueden obtener
-resultados que reflejen situaciones criticas como la influencia del nivel educativo en el uso de Internet o la influencia
-de la region en el mismo.
+resultados que reflejen situaciones críticas como la influencia del nivel educativo en el uso de Internet o la influencia
+de la región en el mismo.
 
-Para hacer el analizis exploratorio de los datos se utilizan herramientas estadisticas como R, Rstudio y el paquete Shinny. Mediante Shinny se busca generar un entorno interactivo que permita modificar las relaciones planteadas a modo de lograr una mayor diversidad de estudio para 
+Para hacer el análisis exploratorio de los datos se utilizan herramientas estadísticas como *R*, *Rstudio* y el paquete *Shiny*. Mediante *Shiny* se busca generar un entorno interactivo que permita modificar las relaciones planteadas a modo de lograr una mayor diversidad de estudio para 
 el usuario.
 
-Se organizo el documento en 3 enfoques principales: asociacion del uso de redes sociales y su caracterizacion por departamentos, profundizar las razones de porque no se utiliza Interent en la poblacion, mostrar la insidencia en el uso de Internet por nivel educativo.
+Se organizo el documento en 3 enfoques principales: asociación del uso de redes sociales y su caracterización por departamentos, profundizar las razones por las que algunas personas no utilizan internet en la población, mostrar la incidencia en el uso de internet por nivel educativo.
+
 
 
 
