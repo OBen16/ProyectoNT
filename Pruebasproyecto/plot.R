@@ -84,17 +84,92 @@ datos$C9_1
 datos%>%filter(!is.na(C9_1))%>%
   ggplot(aes(x=as.factor(niveledu),fill=as.factor(C9_1)))+geom_bar(position = "fill")
 
+#Gráfico de barra apiladas al 100% del uso de Facebook segun departamento
+ggplot(datos, aes(fill = as.factor(DOMDEPARTAMENTO), x = as.factor(C18_1))) + geom_bar(position = "fill") +
+  labs(y = "Proporcion", x = "Uso", fill="Departamento",
+       title = "Gráfico de barra apiladas al 100% del uso de Facebook segun departamento") +
+scale_fill_brewer(palette="Dark2",labels=c("1"="Montevideo",
+                                           "3"="Canelones",
+                                           "4"="Cerro Largo",
+                                           "5"="Colonia",
+                                           "8"="Florida",
+                                           "10"="Maldonado",
+                                           "6"="Durazno",
+                                           "11"="Paysandu",
+                                           "12"="Rio Negro",
+                                           "13"="Rivera",
+                                           "14"="Rocha",
+                                           "16"="San José",
+                                           "18"="Tacuarembó")) + scale_x_discrete(labels=c("1" = "Todos los dias", "2" = "Al menos 1 ves semana", "3" = "menor freq" , "4" = "nunca", "99" = "N/A"))
 
-# Genera indice uso de redes sociales agrupando todas las redes.
-datos = datos %>% replace_na(list(C18_1 = 4, C18_2 =4,  C18_3 =4,  C18_4 =4, C18_5 =4, C18_6 =4, C18_7 = 4))
+
+#Gráfico de barra apiladas al 100% del uso de Whatsapp segun departamento
+ggplot(datos, aes(fill = as.factor(DOMDEPARTAMENTO), x = as.factor(C18_2))) + geom_bar(position = "fill") +
+  labs(y = "Proporcion", x = "Uso", fill="Departamento",
+       title = "Gráfico de barra apiladas al 100% del uso de Whatsapp segun departamento") +
+  scale_fill_brewer(palette="Dark2",labels=c("1"="Montevideo",
+                                             "3"="Canelones",
+                                             "4"="Cerro Largo",
+                                             "5"="Colonia",
+                                             "8"="Florida",
+                                             "10"="Maldonado",
+                                             "6"="Durazno",
+                                             "11"="Paysandu",
+                                             "12"="Rio Negro",
+                                             "13"="Rivera",
+                                             "14"="Rocha",
+                                             "16"="San José",
+                                             "18"="Tacuarembó")) + scale_x_discrete(labels=c("1" = "Todos los dias", "2" = "Al menos 1 ves semana", "3" = "menor freq" , "4" = "nunca", "99" = "N/A"))
+
+#Gráfico de barra apiladas al 100% del uso de TWITTER segun departamento
+ggplot(datos, aes(fill = as.factor(DOMDEPARTAMENTO), x = as.factor(C18_3))) + geom_bar(position = "fill") +
+  labs(y = "Proporcion", x = "Uso", fill="Departamento",
+       title = "Gráfico de barra apiladas al 100% del uso de TWITTER segun departamento") +
+  scale_fill_brewer(palette="Dark2",labels=c("1"="Montevideo",
+                                             "3"="Canelones",
+                                             "4"="Cerro Largo",
+                                             "5"="Colonia",
+                                             "8"="Florida",
+                                             "10"="Maldonado",
+                                             "6"="Durazno",
+                                             "11"="Paysandu",
+                                             "12"="Rio Negro",
+                                             "13"="Rivera",
+                                             "14"="Rocha",
+                                             "16"="San José",
+                                             "18"="Tacuarembó")) + scale_x_discrete(labels=c("1" = "Todos los dias", "2" = "Al menos 1 ves semana", "3" = "menor freq" , "4" = "nunca", "99" = "N/A"))
+
+# Cambios para crear indice de uso de redes sociales
+datos = datos %>% mutate(C18_1 = replace(C18_1, C18_1 == 99, 0))
+datos = datos %>% mutate(C18_2 = replace(C18_2, C18_2 == 99, 0))
+datos = datos %>% mutate(C18_3 = replace(C18_3, C18_3 == 99, 0))
+datos = datos %>% mutate(C18_4 = replace(C18_4, C18_4 == 99, 0))
+datos = datos %>% mutate(C18_5 = replace(C18_5, C18_5 == 99, 0))
+datos = datos %>% mutate(C18_6 = replace(C18_6, C18_6 == 99, 0))
+datos = datos %>% mutate(C18_7 = replace(C18_7, C18_7 == 99, 0))
+
+datos = datos %>% replace_na(list(C18_1 = 0, C18_2 =0,  C18_3 =0,  C18_4 =0, C18_5 =0, C18_6 =0, C18_7 = 0))
+# se agrega la columna uso_redes_sociales con un indice entre 0 y 1 que maca la intensidad de uso de redes sociales. 
 datos = mutate(datos, uso_redes_sociales =  1 - ( (( ( C18_1 + C18_2 + C18_3 + C18_4 + C18_5 + C18_6 + C18_7) / 7 ) - 1 ) / 3 )  )
 
-datos$uso_redes_sociales = datos$uso_redes_sociales %>% replace_na(0)
-
+# se agrupa por apartamento y se hace una media de la nueva columna uso_redes_sociales
+# Aunque hay departamentos con una intensidad de uso menor, el uso se ve homogeneo. 
 datos %>%
   group_by(DOMDEPARTAMENTO) %>%
   summarise(
     media_uso_redes_sociales = mean(uso_redes_sociales, na.rm = TRUE)
   ) %>%
-  ggplot(aes(x = DOMDEPARTAMENTO, y = media_uso_redes_sociales)) + geom_point()
+  ggplot(aes(x = as.factor(DOMDEPARTAMENTO), y= media_uso_redes_sociales)) + geom_bar(stat="identity") + scale_x_discrete(labels=c("1"="Montevideo",
+                                                                                                                                   "3"="Canelones",
+                                                                                                                                   "4"="Cerro Largo",
+                                                                                                                                   "5"="Colonia",
+                                                                                                                                   "8"="Florida",
+                                                                                                                                   "10"="Maldonado",
+                                                                                                                                   "6"="Durazno",
+                                                                                                                                   "11"="Paysandu",
+                                                                                                                                   "12"="Rio Negro",
+                                                                                                                                   "13"="Rivera",
+                                                                                                                                   "14"="Rocha",
+                                                                                                                                   "16"="San José",
+                                                                                                                                   "18"="Tacuarembó"))
 
