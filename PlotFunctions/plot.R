@@ -142,11 +142,10 @@ PlotUsoRedesSocialesNivelEducativo <- function() {
 }
 
 
-#Gráfico de barra apiladas al 100% del uso de Facebook segun departamento
+#Gráfico de barra apiladas  del uso de Facebook segun departamento
 PlotUsoFacebookDepartamento <- function() {
-  ggplot(datos, aes(fill = as.factor(DOMDEPARTAMENTO), x = as.factor(C18_1))) + geom_bar(position = "fill") +
-    labs(y = "Proporcion", x = "Uso",
-         title = "Gráfico de barra apiladas al 100% del uso de Facebook segun departamento") +
+  ggplot(datos, aes(fill = as.factor(DOMDEPARTAMENTO), x = as.factor(C18_1))) + geom_bar(stat = "count") +
+    labs(y = "Proporcion", x = "Uso") +
   scale_fill_discrete("Departamento",labels=c("1"="Montevideo",
                                              "3"="Canelones",
                                              "4"="Cerro Largo",
@@ -159,15 +158,14 @@ PlotUsoFacebookDepartamento <- function() {
                                              "13"="Rivera",
                                              "14"="Rocha",
                                              "16"="San José",
-                                             "18"="Tacuarembó")) + scale_x_discrete(labels=c("1" = "Todos los dias", "2" = "Al menos 1 ves semana", "3" = "menor freq" , "4" = "nunca", "99" = "N/A"))
+                                             "18"="Tacuarembó")) + scale_x_discrete(labels=c("1" = "Alto", "2" = "Medio", "3" = "Poco" , "4" = "Nunca", "99" = "N/A"))
 
 }
 
-#Gráfico de barra apiladas al 100% del uso de Whatsapp segun departamento
+#Gráfico de barra apiladas  del uso de Whatsapp segun departamento
 PlotUsoWhatsAppDepartamento <- function() {
-ggplot(datos, aes(fill = as.factor(DOMDEPARTAMENTO), x = as.factor(C18_2))) + geom_bar(position = "fill") +
-  labs(y = "Proporcion", x = "Uso", 
-       title = "Gráfico de barra apiladas al 100% del uso de Whatsapp segun departamento") +
+ggplot(datos, aes(fill = as.factor(DOMDEPARTAMENTO), x = as.factor(C18_2))) + geom_bar(stat = "count") +
+  labs(y = "Proporcion", x = "Uso") +
   scale_fill_discrete("Departamento",labels=c("1"="Montevideo",
                                              "3"="Canelones",
                                              "4"="Cerro Largo",
@@ -180,14 +178,14 @@ ggplot(datos, aes(fill = as.factor(DOMDEPARTAMENTO), x = as.factor(C18_2))) + ge
                                              "13"="Rivera",
                                              "14"="Rocha",
                                              "16"="San José",
-                                             "18"="Tacuarembó")) + scale_x_discrete(labels=c("1" = "Todos los dias", "2" = "Al menos 1 ves semana", "3" = "menor freq" , "4" = "nunca", "99" = "N/A"))
+                                             "18"="Tacuarembó")) + scale_x_discrete(labels=c("1" = "Alto", "2" = "Medio", "3" = "Poco" , "4" = "Nunca", "99" = "N/A"))
 
 }
 
-#Gráfico de barra apiladas al 100% del uso de TWITTER segun departamento
+#Gráfico de barra apiladas  del uso de TWITTER segun departamento
 PlotUsoTwitterDepartamento <- function() {
-ggplot(datos, aes(fill = as.factor(DOMDEPARTAMENTO), x = as.factor(C18_3))) + geom_bar(position = "fill") +
-  labs(y = "Proporcion", x = "Uso",  title = "Gráfico de barra apiladas al 100% del uso de TWITTER segun departamento") +
+ggplot(datos, aes(fill = as.factor(DOMDEPARTAMENTO), x = as.factor(C18_3))) + geom_bar(stat = "count") +
+  labs(y = "Proporcion", x = "Uso") +
   scale_fill_discrete("Departamento",labels=c("1"="Montevideo",
                                              "3"="Canelones",
                                              "4"="Cerro Largo",
@@ -200,7 +198,26 @@ ggplot(datos, aes(fill = as.factor(DOMDEPARTAMENTO), x = as.factor(C18_3))) + ge
                                              "13"="Rivera",
                                              "14"="Rocha",
                                              "16"="San José",
-                                             "18"="Tacuarembó")) + scale_x_discrete(labels=c("1" = "Todos los dias", "2" = "Al menos 1 ves semana", "3" = "menor freq" , "4" = "nunca", "99" = "N/A"))
+                                             "18"="Tacuarembó")) + scale_x_discrete(labels=c("1" = "Alto", "2" = "Medio", "3" = "Poco" , "4" = "Nunca", "99" = "N/A"))
+}
+
+#Gráfico de barra apiladas  del uso de Instagram segun departamento
+PlotUsoInstagramDepartamento <- function() {
+  ggplot(datos, aes(fill = as.factor(DOMDEPARTAMENTO), x = as.factor(C18_4))) + geom_bar(stat = "count") +
+    labs(y = "Proporcion", x = "Uso") +
+    scale_fill_discrete("Departamento",labels=c("1"="Montevideo",
+                                                "3"="Canelones",
+                                                "4"="Cerro Largo",
+                                                "5"="Colonia",
+                                                "8"="Florida",
+                                                "10"="Maldonado",
+                                                "6"="Durazno",
+                                                "11"="Paysandu",
+                                                "12"="Rio Negro",
+                                                "13"="Rivera",
+                                                "14"="Rocha",
+                                                "16"="San José",
+                                                "18"="Tacuarembó")) + scale_x_discrete(labels=c("1" = "Alto", "2" = "Medio", "3" = "Poco" , "4" = "Nunca", "99" = "N/A"))
 }
 
 PlotIndiceUsoRedesSociales <- function() {

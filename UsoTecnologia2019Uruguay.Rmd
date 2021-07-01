@@ -39,8 +39,29 @@ PlotRazonesNoUsoInternet()
 
 Como se puede ver en la Figura \ref{fig:EdadNoInternet} se encuentran dos franjas disjuntas de edades entre las personas que utilizan internet y las que nos. Si bien podemos encontrar algun caso atipico, las personas que no utilizan Internet se encuentran en promedio concentrados en la franja de 75 anios. Sin embargo las personas que si uilizan Internet, claramente se encuentran concentrados en un rango menor de edad. Por lo tanto, la edad se describe como un factor critico en el uso de Internet. 
 
-```{r echo=FALSE, fig.align='center',  out.width="50%", fig.cap= '\\label{fig:EdadNoInternet}Boxplot de edad segun si usan o no internet' }
+```{r echo=FALSE, fig.align='center',  out.width="50%",fig.cap= '\\label{fig:EdadNoInternet}Boxplot de edad segun si usan o no internet' }
 PlotEdadPersonasUsanInternet()
+```
+
+
+### 3. Asociación del uso de redes sociales y su caracterización por departamentos
+
+Una caracreristica importante del usuo de Internet son las redes sociales. Estas son un reflejo de la conectividad y el entretenimiento entre las personas. Estas en general tienen un uso segementado por edad.  En la Figura \ref{fig:UsoFacebookDepartamento} se aprecia la popularidad de la red Facebook donde el mayor uso se usa en un uso habitual en la semana, como al menos un uso frecuente. Es interesante ver que las personas que nunca usan Facebook tienen el mismo peso que las que lo utilizan eventualmente. 
+
+```{r echo=FALSE, fig.align='center', fig.cap= '\\label{fig:UsoFacebookDepartamento}Uso de Facebook segun departamento' }
+PlotUsoFacebookDepartamento()
+```
+
+En la Figura \ref{fig:UsoTwitterDepartamento} se puede ver que la popularidad de Twitter no es tan alta como la de Facebook en la muestra.  que este comportamiento se repite sistematicamente con otras redes sociales princpiales como Twitter y WhatsApp correspondientemente. La mayoria de la muestra nunca utilizo esta red, y el uso frecuente es muy bajo. 
+
+```{r echo=FALSE, fig.align='center', fig.cap= '\\label{fig:UsoTwitterDepartamento}Uso de Twitter segun departamento' }
+PlotUsoTwitterDepartamento()
+```
+
+En la Figura \ref{fig:UsoWhatsappDepartamento} se puede ver que el uso de Whatsapp es totalmente radicalizado en la muestra. La mayoria de las personas en la muestra utilizan Whatsapp frecuentemente. Lo cual es de esperar, ya que es un medio de comunicacion indispensable en la comunicacion actual. 
+
+```{r echo=FALSE, fig.align='center', fig.cap= '\\label{fig:UsoWhatsappDepartamento}Uso de Whatsapp segun departamento' }
+PlotUsoWhatsAppDepartamento()
 ```
 
 
