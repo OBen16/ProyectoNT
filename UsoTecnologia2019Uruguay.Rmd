@@ -37,4 +37,11 @@ falta de interes o no disposicion. Recien en tercer lugar, y con mucha menor fre
 PlotRazonesNoUsoInternet()
 ```
 
+Como se puede ver en la Figura \ref{fig:EdadNoInternet} se encuentran dos franjas disjuntas de edades entre las personas que utilizan internet y las que nos. Si bien podemos encontrar algun caso atipico, las personas que no utilizan Internet se encuentran en promedio concentrados en la franja de 75 anios. Sin embargo las personas que si uilizan Internet, claramente se encuentran concentrados en un rango menor de edad. Por lo tanto, la edad se describe como un factor critico en el uso de Internet. 
+
+```{r echo=FALSE, fig.align='center',  out.width="50%", fig.cap= '\\label{fig:EdadNoInternet}Boxplot de edad segun si usan o no internet' }
+PlotEdadPersonasUsanInternet()
+```
+
+
 

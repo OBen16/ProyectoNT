@@ -40,9 +40,9 @@ PlotRazonesNoUsoInternet <- function() {
 PlotEdadPersonasUsanInternet <- function() {
   ggplot(datos, aes(x = C8, y = as.factor(C9))) + geom_boxplot() + coord_flip() +
     scale_y_discrete(labels = c("1" = "Sí", "2" = "No")) +
-    labs(x = "Edad", y = "¿Usa internet?",
-         title = "Boxplot de edad segun si usan o no internet")
+    labs(x = "Edad", y = "¿Usa internet?")
 }
+
 
 #Gráfico de barra apiladas al 100% del uso de internet según nivel educativo
 PlotUsoInternetNivelEducativo <- function() {
