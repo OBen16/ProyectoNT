@@ -3,22 +3,13 @@ library(tidyverse)
 library(ggplot2)
 library(forcats)
 
-datos <- read_sav("Pruebasproyecto/datos.sav")
+datos <- read_sav("PlotFunctions/datos.sav")
 nousa <- datos %>% filter(C9==2 & C24!=99)
+print(getwd())
 
-#Gráfico de barras de las razones por las que las personas no usan internet
-ggplot(nousa,aes(x=fct_rev(fct_infreq(as.factor(C24))),fill=as.factor(C24)))+geom_bar(stat = "count")+scale_x_discrete(labels=c(
-  "1"="No sabe como podria servirle",
-  "2"="No sabe usarlo",
-  "3"="No tiene dispositivos digitales",
-  "4"="Le resulta caro",
-  "5"="No tiene tiempo",
-  "6"="discapacidad",
-  "7"="no le interesa o no quiere",
-  "8"="falta de conocimiento de idioma extranjero",
-  "9"="inseguro respecto al contenido",
-  "10"="le preocupa privacidad",
-  "11"="otra"))+coord_flip()+labs(fill="Motivo de no uso",x="Razón",y="Cantidad",title = "Razones por las que no usan internet")+scale_fill_brewer(palette="Paired",labels=c(
+PlotRazonesNoUsoInternet <- function() {
+  #Gráfico de barras de las razones por las que las personas no usan internet
+  ggplot(nousa,aes(x=fct_rev(fct_infreq(as.factor(C24))),fill=as.factor(C24)))+geom_bar(stat = "count")+scale_x_discrete(labels=c(
     "1"="No sabe como podria servirle",
     "2"="No sabe usarlo",
     "3"="No tiene dispositivos digitales",
@@ -29,9 +20,21 @@ ggplot(nousa,aes(x=fct_rev(fct_infreq(as.factor(C24))),fill=as.factor(C24)))+geo
     "8"="falta de conocimiento de idioma extranjero",
     "9"="inseguro respecto al contenido",
     "10"="le preocupa privacidad",
-    "11"="otra"))+ 
-  stat_count(geom = "text",
-             aes(label = ..count..),position=position_stack(vjust=0.5))
+    "11"="otra"))+coord_flip()+labs(fill="Motivo de no uso",x="Razón",y="Cantidad",title = "Razones por las que no usan internet")+scale_fill_brewer(palette="Paired",labels=c(
+      "1"="No sabe como podria servirle",
+      "2"="No sabe usarlo",
+      "3"="No tiene dispositivos digitales",
+      "4"="Le resulta caro",
+      "5"="No tiene tiempo",
+      "6"="discapacidad",
+      "7"="no le interesa o no quiere",
+      "8"="falta de conocimiento de idioma extranjero",
+      "9"="inseguro respecto al contenido",
+      "10"="le preocupa privacidad",
+      "11"="otra"))+ 
+    stat_count(geom = "text",
+               aes(label = ..count..),position=position_stack(vjust=0.5))
+}
 
 #Boxplot de eded de las personas que usan internet y las que no
 ggplot(datos, aes(x = C8, y = as.factor(C9))) + geom_boxplot() + coord_flip() +
@@ -148,7 +151,7 @@ scale_fill_brewer(palette="Dark2",labels=c("1"="Montevideo",
 ggplot(datos, aes(fill = as.factor(DOMDEPARTAMENTO), x = as.factor(C18_2))) + geom_bar(position = "fill") +
   labs(y = "Proporcion", x = "Uso", fill="Departamento",
        title = "Gráfico de barra apiladas al 100% del uso de Whatsapp segun departamento") +
-  scale_fill_brewer(palette="Dark2",labels=c("1"="Montevideo",
+  scale_fill_brewer(labels=c("1"="Montevideo",
                                              "3"="Canelones",
                                              "4"="Cerro Largo",
                                              "5"="Colonia",
@@ -162,11 +165,11 @@ ggplot(datos, aes(fill = as.factor(DOMDEPARTAMENTO), x = as.factor(C18_2))) + ge
                                              "16"="San José",
                                              "18"="Tacuarembó")) + scale_x_discrete(labels=c("1" = "Todos los dias", "2" = "Al menos 1 ves semana", "3" = "menor freq" , "4" = "nunca", "99" = "N/A"))
 
+
 #Gráfico de barra apiladas al 100% del uso de TWITTER segun departamento
 ggplot(datos, aes(fill = as.factor(DOMDEPARTAMENTO), x = as.factor(C18_3))) + geom_bar(position = "fill") +
-  labs(y = "Proporcion", x = "Uso", fill="Departamento",
-       title = "Gráfico de barra apiladas al 100% del uso de TWITTER segun departamento") +
-  scale_fill_brewer(palette="Dark2",labels=c("1"="Montevideo",
+  labs(y = "Proporcion", x = "Uso",  title = "Gráfico de barra apiladas al 100% del uso de TWITTER segun departamento") +
+  scale_fill_discrete("Departamento",labels=c("1"="Montevideo",
                                              "3"="Canelones",
                                              "4"="Cerro Largo",
                                              "5"="Colonia",

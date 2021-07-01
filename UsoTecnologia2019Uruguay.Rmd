@@ -5,6 +5,7 @@ output: pdf_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+base::source("./PlotFunctions//plot.R")
 ```
 
 ## Introducción
@@ -23,6 +24,12 @@ el usuario.
 
 Se organizo el documento en 3 enfoques principales: asociación del uso de redes sociales y su caracterización por departamentos, profundizar las razones por las que algunas personas no utilizan internet en la población, mostrar la incidencia en el uso de internet por nivel educativo.
 
+## Analizis Exploratorio
+
+
+
+
+
 
 
 
@@ -31,6 +38,7 @@ Se organizo el documento en 3 enfoques principales: asociación del uso de redes
 
 
 ```{r }
+PlotRazonesNoUsoInternet()
 ```
 
 
