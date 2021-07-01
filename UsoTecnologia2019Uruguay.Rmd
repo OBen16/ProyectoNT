@@ -37,11 +37,29 @@ falta de interes o no disposicion. Recien en tercer lugar, y con mucha menor fre
 PlotRazonesNoUsoInternet()
 ```
 
-Como se puede ver en la Figura \ref{fig:EdadNoInternet} se encuentran dos franjas disjuntas de edades entre las personas que utilizan internet y las que nos. Si bien podemos encontrar algun caso atipico, las personas que no utilizan Internet se encuentran en promedio concentrados en la franja de 75 anios. Sin embargo las personas que si uilizan Internet, claramente se encuentran concentrados en un rango menor de edad. Por lo tanto, la edad se describe como un factor critico en el uso de Internet. 
+Como se puede ver en la Figura \ref{fig:EdadNoInternet} se encuentran dos franjas disjuntas de edades entre las personas que utilizan internet y las que no. Si bien podemos encontrar algun caso atipico, las personas que no utilizan Internet se encuentran en promedio concentrados en la franja de 75 anios. Sin embargo las personas que si uilizan Internet, claramente se encuentran concentrados en un rango menor de edad. Por lo tanto, la edad se describe como un factor critico en el uso de Internet. 
 
 ```{r echo=FALSE, fig.align='center',  out.width="50%", fig.cap= '\\label{fig:EdadNoInternet}Boxplot de edad segun si usan o no internet' }
 PlotEdadPersonasUsanInternet()
 ```
 
 
+### 2. Mostrar la incidencia en el uso de internet por nivel educativo
 
+En esta seccion nos enfocaremos en analizar si, el nivel educativo de la persona, influye en su uso del internet, ya sea en el trabajo o en la utilizacion de redes sociales y paginas web similares.
+En la figura \ref{fig:UsoITNEdu} podemos apreciar un claro aumento en la frecuencia del uso de internet en el trabajo segun aumenta el nivel educativo, siendo que las personas con estudio universitario completo que usan el internet todos los dias superan el 50% ampliamente, mientras que en los niveles mas bajos de educacion no alcanzan el 25%.
+
+```{r echo=FALSE, fig.align='center', fig.cap= '\\label{fig:UsoITNEdu}Uso internet en el trabajo' }
+PlotUsoInternetTrabajoNivelEducativo()
+```
+En la figura \ref{fig:UsoINEdu} podemos observar que, si bien hay un pequeño aumento en la cantidad de personas que usan el internet a diaro mientras mayor es el nivel educativo, aqui la diferencia es mucho menor, por lo tanto la educacion no parece afectar demasiado el uso de internet general.
+
+```{r echo=FALSE, fig.align='center', fig.cap= '\\label{fig:UsoINEdu}Uso internet nivel educativo' }
+PlotUsoInternetPorNivelEducativo()
+```
+
+En la figura \ref{fig:UsoRSNEdu} vemos un aumento de el uso de paginas redes sociales y paginas similares segun aumenta el nivel educativo, con un aumento brusco inicial y luego mas lento, por lo que en los niveles medio-alto de educacion no habria mucha diferencia como si la tienen respecto a los niveles mas bajos de educacion.
+
+```{r echo=FALSE, fig.align='center', fig.cap= '\\label{fig:UsoRSNEdu}Uso redes y paginas por nivel educativo' }
+PlotUsoRedesSocialesNivelEducativo()
+```
