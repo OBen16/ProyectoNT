@@ -70,19 +70,60 @@ ggplot(datos, aes(fill = as.factor(C9), x = fct_reorder(as.factor(DOMDEPARTAMENT
                                                                                              "18"="Tacuarembó"))
 
 #Frecuencia de uso de internet en el trabajo por nivel educativo
+datos$niveledu
 datos%>%filter(!is.na(C13_2))%>%
-  ggplot(aes(x=as.factor(niveledu),fill=as.factor(C13_2)))+geom_bar(position = "fill")
+  ggplot(aes(x=as.factor(niveledu),fill=as.factor(C13_2)))+geom_bar(position = "fill")+
+  scale_fill_discrete("Uso internet",breaks=c(1,2,3,4,99),
+    labels=c("Todos los dias",
+                      "Al menos una vez a la semana pero no todos los dias",
+                      "Con menor frecuencia",
+                      "No utilizó",
+                      "S/D"))+
+  scale_x_discrete(labels=c("Sin instrucción o Primaria incompleta",
+                   "Primaria completa o Ciclo Básico incompleto",
+                   "Ciclo Básico completo o Segundo Ciclo incompleto",
+                   "Segundo Ciclo completo o Terciaria incompleta",
+                   "Terciaria no Universitaria completa",
+                   "Terciaria Universitaria completa"))+
+  labs(x="Nivel educativo",y="Proporcion",
+       title = "Uso de internet en el trabajo por nivel educativo")
+  
 
 
 #Uso de internet por nivel educativo
 datos$C11
 datos%>%filter(!is.na(C11))%>%
-  ggplot(aes(x=as.factor(niveledu),fill=as.factor(C11)))+geom_bar(position = "fill")
+  ggplot(aes(x=as.factor(niveledu),fill=as.factor(C11)))+geom_bar(position = "fill")+
+  scale_x_discrete(labels=c("Sin instrucción o Primaria incompleta",
+                            "Primaria completa o Ciclo Básico incompleto",
+                            "Ciclo Básico completo o Segundo Ciclo incompleto",
+                            "Segundo Ciclo completo o Terciaria incompleta",
+                            "Terciaria no Universitaria completa",
+                            "Terciaria Universitaria completa"))+
+  scale_fill_discrete("Uso internet",breaks=c(1,2,3,4,99),
+                      labels=c("Todos los dias",
+                               "Al menos una vez a la semana pero no todos los dias",
+                               "Con menor frecuencia",
+                               "No utilizó",
+                               "S/D"))+
+  labs(x="Nivel educativo",y="Proporcion",
+       title = "Uso de internet por nivel educativo")
 
 #Uso de redes sociales por nivel educativo
 datos$C9_1
 datos%>%filter(!is.na(C9_1))%>%
-  ggplot(aes(x=as.factor(niveledu),fill=as.factor(C9_1)))+geom_bar(position = "fill")
+  ggplot(aes(x=as.factor(niveledu),fill=as.factor(C9_1)))+geom_bar(position = "fill")+
+  scale_x_discrete(labels=c("Sin instrucción o Primaria incompleta",
+                            "Primaria completa o Ciclo Básico incompleto",
+                            "Ciclo Básico completo o Segundo Ciclo incompleto",
+                            "Segundo Ciclo completo o Terciaria incompleta",
+                            "Terciaria no Universitaria completa",
+                            "Terciaria Universitaria completa"))+
+  scale_fill_discrete("Uso de redes",
+                      breaks=c(1,2),
+                      labels=c("Si","No"))+
+  labs(x="Nivel educativo",y="Proporcion",
+       title = "Uso de redes sociales por nivel educativo")
 
 #Gráfico de barra apiladas al 100% del uso de Facebook segun departamento
 ggplot(datos, aes(fill = as.factor(DOMDEPARTAMENTO), x = as.factor(C18_1))) + geom_bar(position = "fill") +
