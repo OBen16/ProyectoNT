@@ -1,6 +1,7 @@
 ---
 title: "Uso de la Tecnología de la Información y Comunicaciones (EUTIC) en Uruguay 2019"
 output: pdf_document
+fig_caption: true
 ---
 
 ```{r setup, include=FALSE}
@@ -27,17 +28,12 @@ Se organizo el documento en 3 enfoques principales: asociación del uso de redes
 ## Analizis Exploratorio
 
 
+### 1. Profundizacion de las razones de no uso de Internet
 
+Un enfoque princpial de estos datos, responde al interes de profundizar en aquellas personas que no utilizan Internet. En la Figura \ref{fig:RazonesNoInternet} se puede ver que la principal razon es el no saber usarlo En segundo lugar la razon principal es simplemente
+falta de interes o no disposicion. Recien en tercer lugar, y con mucha menor frecuencia se plantea la imposibildad de acceso a dispositivos digitales. 
 
-
-
-
-
-
-
-
-
-```{r }
+```{r echo=FALSE, fig.cap= '\\label{fig:RazonesNoInternet}Razones por las que no usan Internet' }
 PlotRazonesNoUsoInternet()
 ```
 

@@ -20,7 +20,7 @@ PlotRazonesNoUsoInternet <- function() {
     "8"="falta de conocimiento de idioma extranjero",
     "9"="inseguro respecto al contenido",
     "10"="le preocupa privacidad",
-    "11"="otra"))+coord_flip()+labs(fill="Motivo de no uso",x="Razón",y="Cantidad",title = "Razones por las que no usan internet")+scale_fill_brewer(palette="Paired",labels=c(
+    "11"="otra"))+coord_flip()+labs(fill="Motivo de no uso",x="Razón",y="Cantidad")+scale_fill_brewer(palette="Paired",labels=c(
       "1"="No sabe como podria servirle",
       "2"="No sabe usarlo",
       "3"="No tiene dispositivos digitales",
