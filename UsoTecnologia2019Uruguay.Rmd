@@ -91,3 +91,5 @@ Se creo un Indice de uso de Redes sociales entre el intervalo 0 a 1. Donde 0 sig
 ```{r echo=FALSE, fig.align='center', fig.cap= '\\label{fig:IndiceRedesSociales}Indice uso redes sociales segun departamento' }
 PlotIndiceUsoRedesSociales()
 ```
+
+En la \ref{fig:IndiceRedesSociales} se puede observar que el indice de uso  de distintas redes sociales es de 0.5 en todos los departamentos. Con un uso de redes sociales homogeneo. Aunque se destacan la utilizacion de este indice en los departamento de Tacuarembo, Rivera, Paysandu, Colonia y Cerro Largo. Superando el uso en estos departamentos del Interior al uso en  la capital, Montevideo.  
