@@ -97,8 +97,7 @@ PlotUsoInternetTrabajoNivelEducativo <- function() {
                      "Segundo Ciclo completo o Terciaria incompleta",
                      "Terciaria no Universitaria completa",
                      "Terciaria Universitaria completa"))+
-    labs(x="Nivel educativo",y="Proporcion",
-         title = "Uso de internet en el trabajo por nivel educativo")
+    labs(x="Nivel educativo",y="Proporcion")
 }
 
 #Uso de internet por nivel educativo
@@ -118,8 +117,7 @@ PlotUsoInternetPorNivelEducativo <- function() {
                                  "Con menor frecuencia",
                                  "No utilizó",
                                  "S/D"))+
-    labs(x="Nivel educativo",y="Proporcion",
-         title = "Uso de internet por nivel educativo")
+    labs(x="Nivel educativo",y="Proporcion")
 
 }
 
@@ -137,8 +135,7 @@ PlotUsoRedesSocialesNivelEducativo <- function() {
     scale_fill_discrete("Uso de redes",
                         breaks=c(1,2),
                         labels=c("Si","No"))+
-    labs(x="Nivel educativo",y="Proporcion",
-         title = "Uso de redes sociales por nivel educativo")
+    labs(x="Nivel educativo",y="Proporcion")
 }
 
 
