@@ -52,6 +52,7 @@ En la figura \ref{fig:UsoITNEdu} podemos apreciar un claro aumento en la frecuen
 ```{r echo=FALSE, fig.align='center', fig.cap= '\\label{fig:UsoITNEdu}Uso internet en el trabajo' }
 PlotUsoInternetTrabajoNivelEducativo()
 ```
+
 En la figura \ref{fig:UsoINEdu} podemos observar que, si bien hay un pequeño aumento en la cantidad de personas que usan el internet a diaro mientras mayor es el nivel educativo, aqui la diferencia es mucho menor, por lo tanto la educacion no parece afectar demasiado el uso de internet general.
 
 ```{r echo=FALSE, fig.align='center', fig.cap= '\\label{fig:UsoINEdu}Uso internet nivel educativo' }
@@ -85,3 +86,8 @@ En la Figura \ref{fig:UsoWhatsappDepartamento} se puede ver que el uso de Whatsa
 PlotUsoWhatsAppDepartamento()
 ```
 
+Se creo un Indice de uso de Redes sociales entre el intervalo 0 a 1. Donde 0 significa que una persona no utiliza ninguna red social y 1 singifica que utiliza con mucha freuencia todas las redes sociales. Este indice se promedia por departamento. 
+
+```{r echo=FALSE, fig.align='center', fig.cap= '\\label{fig:IndiceRedesSociales}Indice uso redes sociales segun departamento' }
+PlotIndiceUsoRedesSociales()
+```

@@ -238,7 +238,7 @@ PlotIndiceUsoRedesSociales <- function() {
     summarise(
       media_uso_redes_sociales = mean(uso_redes_sociales, na.rm = TRUE)
     ) %>%
-    ggplot(aes(x = as.factor(DOMDEPARTAMENTO), y= media_uso_redes_sociales) ,fill=DOMDEPARTAMENTO) + geom_bar(stat="identity") + scale_x_discrete(labels=c("1"="Montevideo",
+    ggplot(aes(x = as.factor(DOMDEPARTAMENTO), y= media_uso_redes_sociales) ,fill=DOMDEPARTAMENTO) + labs(y = "Indice uso", x = "Departamento") +geom_bar(stat="identity") + scale_x_discrete(labels=c("1"="Montevideo",
                                                                                                                                      "3"="Canelones",
                                                                                                                                      "4"="Cerro Largo",
                                                                                                                                      "5"="Colonia",
@@ -250,6 +250,7 @@ PlotIndiceUsoRedesSociales <- function() {
                                                                                                                                      "13"="Rivera",
                                                                                                                                      "14"="Rocha",
                                                                                                                                      "16"="San José",
-                                                                                                                                     "18"="Tacuarembó"))
+                                                                                                                                     "18"="Tacuarembó")) +
+    theme(axis.text.x = element_text(angle = 330))
 }
 
