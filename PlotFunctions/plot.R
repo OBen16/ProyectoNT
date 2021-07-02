@@ -87,16 +87,16 @@ PlotUsoInternetTrabajoNivelEducativo <- function() {
     ggplot(aes(x=as.factor(niveledu),fill=as.factor(C13_2)))+geom_bar(position = "fill")+
     scale_fill_discrete("Uso internet",breaks=c(1,2,3,4,99),
       labels=c("Todos los dias",
-                        "Al menos una vez a la semana pero no todos los dias",
+                        "Al menos una vez a la semana",
                         "Con menor frecuencia",
                         "No utilizó",
                         "S/D"))+
-    scale_x_discrete(labels=c("Sin instrucción o Primaria incompleta",
-                     "Primaria completa o Ciclo Básico incompleto",
-                     "Ciclo Básico completo o Segundo Ciclo incompleto",
-                     "Segundo Ciclo completo o Terciaria incompleta",
-                     "Terciaria no Universitaria completa",
-                     "Terciaria Universitaria completa"))+
+    scale_x_discrete(labels=c("Primaria incompleta",
+                     "Ciclo Básico incompleto",
+                     "Segundo Ciclo incompleto",
+                     "Terciaria incompleta",
+                     "Terciaria no Universitaria",
+                     "Terciaria Universitaria"))+
     labs(x="Nivel educativo",y="Proporcion")+
     theme(axis.text.x = element_text(angle = 330))
 }
@@ -106,15 +106,15 @@ PlotUsoInternetPorNivelEducativo <- function() {
   datos$C11
   datos%>%filter(!is.na(C11))%>%
     ggplot(aes(x=as.factor(niveledu),fill=as.factor(C11)))+geom_bar(position = "fill")+
-    scale_x_discrete(labels=c("Sin instrucción o Primaria incompleta",
-                              "Primaria completa o Ciclo Básico incompleto",
-                              "Ciclo Básico completo o Segundo Ciclo incompleto",
-                              "Segundo Ciclo completo o Terciaria incompleta",
-                              "Terciaria no Universitaria completa",
-                              "Terciaria Universitaria completa"))+
+    scale_x_discrete(labels=c("Primaria incompleta",
+                              "Ciclo Básico incompleto",
+                              "Segundo Ciclo incompleto",
+                              "Terciaria incompleta",
+                              "Terciaria no Universitaria",
+                              "Terciaria Universitaria"))+
     scale_fill_discrete("Uso internet",breaks=c(1,2,3,4,99),
                         labels=c("Todos los dias",
-                                 "Al menos una vez a la semana pero no todos los dias",
+                                 "Al menos una vez a la semana",
                                  "Con menor frecuencia",
                                  "No utilizó",
                                  "S/D"))+
@@ -128,12 +128,12 @@ PlotUsoRedesSocialesNivelEducativo <- function() {
   datos$C9_1
   datos%>%filter(!is.na(C9_1))%>%
     ggplot(aes(x=as.factor(niveledu),fill=as.factor(C9_1)))+geom_bar(position = "fill")+
-    scale_x_discrete(labels=c("Sin instrucción o Primaria incompleta",
-                              "Primaria completa o Ciclo Básico incompleto",
-                              "Ciclo Básico completo o Segundo Ciclo incompleto",
-                              "Segundo Ciclo completo o Terciaria incompleta",
-                              "Terciaria no Universitaria completa",
-                              "Terciaria Universitaria completa"))+
+    scale_x_discrete(labels=c("Primaria incompleta",
+                              "Ciclo Básico incompleto",
+                              "Segundo Ciclo incompleto",
+                              "Terciaria incompleta",
+                              "Terciaria no Universitaria",
+                              "Terciaria Universitaria"))+
     scale_fill_discrete("Uso de redes",
                         breaks=c(1,2),
                         labels=c("Si","No"))+
