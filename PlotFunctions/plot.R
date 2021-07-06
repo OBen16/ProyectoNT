@@ -15,23 +15,23 @@ PlotRazonesNoUsoInternet <- function() {
     "3"="No tiene dispositivos digitales",
     "4"="Le resulta caro",
     "5"="No tiene tiempo",
-    "6"="discapacidad",
-    "7"="no le interesa o no quiere",
-    "8"="falta de conocimiento de idioma extranjero",
-    "9"="inseguro respecto al contenido",
-    "10"="le preocupa privacidad",
-    "11"="otra"))+coord_flip()+labs(fill="Motivo de no uso",x="Razón",y="Cantidad")+scale_fill_brewer(palette="Paired",labels=c(
+    "6"="Discapacidad",
+    "7"="No le interesa o no quiere",
+    "8"="Falta de conocimiento de idioma extranjero",
+    "9"="Inseguro respecto al contenido",
+    "10"="Le preocupa privacidad",
+    "11"="Otra"))+coord_flip()+labs(fill="Motivo de no uso",x="Razon",y="Cantidad")+scale_fill_brewer(palette="Paired",labels=c(
       "1"="No sabe como podria servirle",
       "2"="No sabe usarlo",
       "3"="No tiene dispositivos digitales",
       "4"="Le resulta caro",
       "5"="No tiene tiempo",
-      "6"="discapacidad",
-      "7"="no le interesa o no quiere",
-      "8"="falta de conocimiento de idioma extranjero",
-      "9"="inseguro respecto al contenido",
-      "10"="le preocupa privacidad",
-      "11"="otra"))+ 
+      "6"="Discapacidad",
+      "7"="No le interesa o no quiere",
+      "8"="Falta de conocimiento de idioma extranjero",
+      "9"="Inseguro respecto al contenido",
+      "10"="Le preocupa privacidad",
+      "11"="Otra"))+ 
     stat_count(geom = "text",
                aes(label = ..count..),position=position_stack(vjust=0.5))
 }
@@ -39,33 +39,31 @@ PlotRazonesNoUsoInternet <- function() {
 #Boxplot de eded de las personas que usan internet y las que no
 PlotEdadPersonasUsanInternet <- function() {
   ggplot(datos, aes(x = C8, y = as.factor(C9))) + geom_boxplot() + coord_flip() +
-    scale_y_discrete(labels = c("1" = "Sí", "2" = "No")) +
-    labs(x = "Edad", y = "¿Usa internet?")
+    scale_y_discrete(labels = c("1" = "Si", "2" = "No")) +
+    labs(x = "Edad", y = "Usa internet")
 }
 
 
 #Gráfico de barra apiladas al 100% del uso de internet según nivel educativo
 PlotUsoInternetNivelEducativo <- function() {
   ggplot(datos, aes(fill = as.factor(C9), x = as.factor(niveledu))) + geom_bar(position = "fill") +
-    labs(y = "Proporcion", x = "Nivel educativo", fill="¿Usa internet?",
-         title = "Grafico de barras apiladas al 100% de uso de internet segun nivel educativo") +
-    scale_fill_brewer(palette="Dark2",labels=c("1"="Sí","2"="No"))
+    labs(y = "Proporcion", x = "Nivel educativo", fill="Usa internet") +
+    scale_fill_brewer(palette="Dark2",labels=c("1"="Si","2"="No"))
 }
 
 #Gráfico de barra apiladas al 100% del uso de internet según quintil
 PlotUsoInternetQuintil <- function() {
   ggplot(datos, aes(fill = as.factor(C9), x = as.factor(Quintil))) + geom_bar(position = "fill") +
-    labs(y = "Proporcion", x = "Quintil", fill="¿Usa internet?",
+    labs(y = "Proporcion", x = "Quintil", fill="Usa internet",
          title = "Grafico de barras apiladas al 100% de uso de internet segun quintil de ingreso per capita") +
-    scale_fill_brewer(palette="Dark2",labels=c("1"="Sí","2"="No"))
+    scale_fill_brewer(palette="Dark2",labels=c("1"="Si","2"="No"))
 }
 
 #Gráfico de barra apiladas al 100% del uso de internet según departamento
 PlotUsoInternetDepartamento <- function() {
   ggplot(datos, aes(fill = as.factor(C9), x = fct_reorder(as.factor(DOMDEPARTAMENTO),-as.numeric(C9),mean))) + geom_bar(position = "fill") +
-    labs(y = "Proporcion", x = "Departamento", fill="¿Usa internet?",
-         title = "Grafico de barras apiladas al 100% de uso de internet segun departamento") +
-    scale_fill_brewer(palette="Dark2",labels=c("1"="Sí","2"="No")) + scale_x_discrete(labels=c("1"="Montevideo",
+    labs(y = "Proporcion", x = "Departamento", fill="Usa internet") +
+    scale_fill_brewer(palette="Dark2",labels=c("1"="Si","2"="No")) + scale_x_discrete(labels=c("1"="Montevideo",
                                                                                                "3"="Canelones",
                                                                                                "4"="Cerro Largo",
                                                                                                "5"="Colonia",
@@ -77,7 +75,8 @@ PlotUsoInternetDepartamento <- function() {
                                                                                                "13"="Rivera",
                                                                                                "14"="Rocha",
                                                                                                "16"="San José",
-                                                                                               "18"="Tacuarembó"))
+                                                                                               "18"="Tacuarembó")) +
+    theme(axis.text.x = element_text(angle = 270, vjust = 0))
 }
 
 #Frecuencia de uso de internet en el trabajo por nivel educativo
