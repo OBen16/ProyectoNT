@@ -28,7 +28,26 @@ ui <- fluidPage(
         )
       )
     ),
-    tabPanel("Incidencia del uso de Internet por nivel educativo"),
+    tabPanel(
+      "Incidencia del uso de Internet por nivel educativo",
+      sidebarLayout(
+        sidebarPanel(
+          selectInput("usoInternetNivelEduSelect","Detalle",
+                      c("Uso internet en el trabajo","Uso internet por nivel educativo","Uso redes por nivel educativo"))
+        ),
+        mainPanel(
+          conditionalPanel(condition = "input.usoInternetNivelEduSelect == 'Uso internet en el trabajo'",
+                           plotOutput("usoInternetTrabajoNivelEducativo")
+          ),
+          conditionalPanel(condition = "input.usoInternetNivelEduSelect == 'Uso internet por nivel educativo'",
+                           plotOutput("usoInternetPorNivelEducativo")
+          ),
+          conditionalPanel(condition = "input.usoInternetNivelEduSelect == 'Uso redes por nivel educativo'",
+                           plotOutput("usoRedesSocialesNivelEducativo")
+          )
+        )
+      )
+      ),
     tabPanel("Uso de redes sociales y caracterizacion por departamentos")
   )
 )
@@ -40,5 +59,9 @@ server <-function(input, output){
   output$usoInternetNivelEducativo <- renderPlot({PlotUsoInternetNivelEducativo()})
   output$usoInternetDepartamento   <- renderPlot({PlotUsoInternetDepartamento()})
   
+  #Seccion 2: Incidencia del uso de Internet por nivel educativo
+  output$usoInternetTrabajoNivelEducativo <- renderPlot({PlotUsoInternetTrabajoNivelEducativo()})
+  output$usoInternetPorNivelEducativo  <- renderPlot({PlotUsoInternetPorNivelEducativo()})
+  output$usoRedesSocialesNivelEducativo <- renderPlot({PlotUsoRedesSocialesNivelEducativo()})
 }
 shinyApp(ui, server)
