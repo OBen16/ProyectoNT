@@ -6,7 +6,7 @@ fig_caption: true
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-base::source("./PlotFunctions//plot.R")
+base::source("./PlotFunctions/plot.R")
 ```
 
 ## Introducción
