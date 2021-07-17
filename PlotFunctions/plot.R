@@ -96,8 +96,7 @@ PlotUsoInternetTrabajoNivelEducativo <- function() {
                      "Terciaria incompleta",
                      "Terciaria no Universitaria",
                      "Terciaria Universitaria"))+
-    labs(x="Nivel educativo",y="Proporcion")+
-    theme(axis.text.x = element_text(angle = 330))
+    labs(x="Nivel educativo",y="Proporcion")
 }
 
 #Uso de internet por nivel educativo

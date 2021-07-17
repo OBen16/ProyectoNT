@@ -37,7 +37,11 @@ ui <- fluidPage(
         ),
         mainPanel(
           conditionalPanel(condition = "input.usoInternetNivelEduSelect == 'Uso internet en el trabajo'",
-                           plotOutput("usoInternetTrabajoNivelEducativo")
+                           plotOutput("usoInternetTrabajoNivelEducativo"),
+                           sliderInput("grados","Grados",
+                                       min = 0,
+                                       max=360,
+                                       value = 300)
           ),
           conditionalPanel(condition = "input.usoInternetNivelEduSelect == 'Uso internet por nivel educativo'",
                            plotOutput("usoInternetPorNivelEducativo")
@@ -60,7 +64,9 @@ server <-function(input, output){
   output$usoInternetDepartamento   <- renderPlot({PlotUsoInternetDepartamento()})
   
   #Seccion 2: Incidencia del uso de Internet por nivel educativo
-  output$usoInternetTrabajoNivelEducativo <- renderPlot({PlotUsoInternetTrabajoNivelEducativo()})
+  g1<-reactive(PlotUsoInternetTrabajoNivelEducativo()+
+                 theme(axis.text.x = element_text(angle = input$grados)))
+  output$usoInternetTrabajoNivelEducativo <- renderPlot({g1()})
   output$usoInternetPorNivelEducativo  <- renderPlot({PlotUsoInternetPorNivelEducativo()})
   output$usoRedesSocialesNivelEducativo <- renderPlot({PlotUsoRedesSocialesNivelEducativo()})
 }
