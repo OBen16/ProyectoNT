@@ -52,7 +52,32 @@ ui <- fluidPage(
         )
       )
       ),
-    tabPanel("Uso de redes sociales y caracterizacion por departamentos")
+    tabPanel("Uso de redes sociales y caracterizacion por departamentos",
+             sidebarLayout(
+               sidebarPanel(
+                 selectInput("usoredes","Detalle",
+                             c("Uso de Facebook por departamento","Uso de WhatsApp por departamento",
+                               "Uso de Twitter por departamento","Uso de Instagram por departamento",
+                               "Indice de uso de redes sociales"))
+               ),
+               mainPanel(
+                 conditionalPanel(condition = "input.usoredes == 'Uso de Facebook por departamento'",
+                                  plotOutput("usoFacebookDepartamento")
+                 ),
+                 conditionalPanel(condition = "input.usoredes == 'Uso de WhatsApp por departamento'",
+                                  plotOutput("usoWhatsAppDepartamento")
+                 ),
+                 conditionalPanel(condition = "input.usoredes == 'Uso de Twitter por departamento'",
+                                  plotOutput("usoTwitterDepartamento")
+                 ),
+                 conditionalPanel(condition = "input.usoredes == 'Uso de Instagram por departamento'",
+                                  plotOutput("usoInstagramDepartamento")
+                 ),
+                 conditionalPanel(condition = "input.usoredes == 'Indice de uso de redes sociales'",
+                                  plotOutput("indiceUsoRedesSociales")
+                 )
+               )
+             ))
   )
 )
 
@@ -69,5 +94,11 @@ server <-function(input, output){
   output$usoInternetTrabajoNivelEducativo <- renderPlot({g1()})
   output$usoInternetPorNivelEducativo  <- renderPlot({PlotUsoInternetPorNivelEducativo()})
   output$usoRedesSocialesNivelEducativo <- renderPlot({PlotUsoRedesSocialesNivelEducativo()})
+  #Seccion 3: Uso de redes sociales y caracterizacion por departamentos
+  output$usoFacebookDepartamento      <- renderPlot({PlotUsoFacebookDepartamento()})
+  output$usoWhatsAppDepartamento      <- renderPlot({PlotUsoWhatsAppDepartamento()})
+  output$usoTwitterDepartamento      <- renderPlot({PlotUsoTwitterDepartamento()})
+  output$usoInstagramDepartamento      <- renderPlot({PlotUsoInstagramDepartamento()})
+  output$indiceUsoRedesSociales      <- renderPlot({PlotIndiceUsoRedesSociales()})
 }
 shinyApp(ui, server)
