@@ -2,6 +2,7 @@
 title: "Uso de la Tecnología de la Información y Comunicaciones (EUTIC) en Uruguay 2019"
 output: pdf_document
 fig_caption: true
+lang: es-ES
 ---
 
 ```{r setup, include=FALSE}
@@ -20,10 +21,18 @@ obtener medidas y proyecciones que permitan entender el estado actual de desarro
 resultados que reflejen situaciones críticas como la influencia del nivel educativo en el uso de Internet o la influencia
 de la región en el mismo.
 
-Para hacer el análisis exploratorio de los datos se utilizan herramientas estadísticas como *R*, *Rstudio* y el paquete *Shiny*. Mediante *Shiny* se busca generar un entorno interactivo que permita modificar las relaciones planteadas a modo de lograr una mayor diversidad de estudio para 
+Para hacer el análisis exploratorio de los datos se utilizan herramientas estadísticas como *R*, *Rstudio* y el paquete *shiny*. Mediante *shiny* se busca generar un entorno interactivo que permita modificar las relaciones planteadas a modo de lograr una mayor diversidad de estudio para 
 el usuario.
 
 Se organizó el documento en 3 enfoques principales: asociación del uso de redes sociales y su caracterización por departamentos, profundizar las razones por las que algunas personas no utilizan internet en la población, mostrar la incidencia en el uso de internet por nivel educativo.
+
+Es importante tener en cuenta que este trabajo fue realizado con datos obtenidos en una muestra, pero esto no se tuvo en cuenta durante la exploración de los mismos.
+
+## Datos
+
+Los datos utilizados para realizar este trabajo fueron obtenidos en la Encuesta de Uso de la Tecnología de la Información y Comunicaciones realizada por el INE (Instituto Nacional de Estadística) en el año 2019. Estos datos se pueden encontrar en la [\textcolor{blue}{página web del INE}](https://ine.gub.uy/web/guest/encuesta-de-uso-de-la-tecnologia-de-la-informacion-y-las-comunicaciones).
+
+La base de datos tiene muchas variables, pero las más interesantes a analizar son por ejemplo si las personas usan o no el internet, con qué frecuencia lo hacen, el uso de redes sociales y los motivos por los que algunas personas no utilizan internet. Además, son de interés las variables edad, nivel educativo, y departamento para ver si hay diferentes resultados para distintas respuestas de estas preguntas.
 
 ## Análisis Exploratorio
 
@@ -42,13 +51,13 @@ Como se puede ver en la Figura \ref{fig:EdadNoInternet} se encuentran dos franja
 PlotEdadPersonasUsanInternet()
 ```
 
-También puede ser interesante ver si el nivel educativo de las personas hace alguna diferencia en que usen o no internet. En la figura \ref{fig:UsoNivelEdu}, se puede ver que a mayor nivel educativo alcanzado mayor es el porcentaje de personas que sí usan el internet. En el conjunto de las personas con el nivel educativo más bajo menos de la mitad usa internet, siendo el único conjunto en el que pasa eso. Mientras tanto, en el nivel educativo más alto casi todos lo usan.
+También puede ser interesante ver si el nivel educativo de las personas hace alguna diferencia en que usen o no internet. En la Figura \ref{fig:UsoNivelEdu}, se puede ver que a mayor nivel educativo alcanzado mayor es el porcentaje de personas que sí usan el internet. En el conjunto de las personas con el nivel educativo más bajo menos de la mitad usa internet, siendo el único conjunto en el que pasa eso. Mientras tanto, en el nivel educativo más alto casi todos lo usan.
 
 ```{r echo=FALSE, fig.align='center',  fig.cap='\\label{fig:UsoNivelEdu}Gráfico de barras apiladas al 100 de uso de internet según nivel educativo'}
 PlotUsoInternetNivelEducativo()
 ```
 
-En la figura \ref{fig:UsoDepar} vemos que diferencia hay en el uso de internet en cada departamento. Resulta que el departamento donde hay un mayor porcentaje de uso de internet es en la capital, Montevideo, y Paysandú es el departamento donde menos se usa, pero aun así más de la mitad de las personas de la muestra lo usa. 
+En la Figura \ref{fig:UsoDepar} vemos que diferencia hay en el uso de internet en cada departamento. Resulta que el departamento donde hay un mayor porcentaje de uso de internet es en la capital, Montevideo, y Paysandú es el departamento donde menos se usa, pero aun así más de la mitad de las personas de la muestra lo usa. 
 
 ```{r echo=FALSE, fig.align='center',  fig.cap='\\label{fig:UsoDepar}Gráfico de apiladas al 100 de uso de internet según departamento'}
 PlotUsoInternetDepartamento()
@@ -58,19 +67,19 @@ PlotUsoInternetDepartamento()
 ### 2. Mostrar la incidencia en el uso de internet por nivel educativo
 
 En esta sección nos enfocaremos en analizar si el nivel educativo de la persona influye en su uso del internet, ya sea en el trabajo o en la utilización de redes sociales y páginas web similares.
-En la figura \ref{fig:UsoITNEdu} podemos apreciar un claro aumento en la frecuencia del uso de internet en el trabajo según aumenta el nivel educativo, siendo que las personas con estudio universitario completo que usan el internet todos los días superan el 50% ampliamente, mientras que en los niveles más bajos de educación no alcanzan el 25%.
+En la Figura \ref{fig:UsoITNEdu} podemos apreciar un claro aumento en la frecuencia del uso de internet en el trabajo según aumenta el nivel educativo, siendo que las personas con estudio universitario completo que usan el internet todos los días superan el 50% ampliamente, mientras que en los niveles más bajos de educación no alcanzan el 25%.
 
 ```{r echo=FALSE, fig.align='center', fig.cap= '\\label{fig:UsoITNEdu}Uso internet en el trabajo' }
 PlotUsoInternetTrabajoNivelEducativo()
 ```
 
-En la figura \ref{fig:UsoINEdu} podemos observar que, si bien hay un pequeño aumento en la cantidad de personas que usan el internet a diario mientras mayor es el nivel educativo, aquí la diferencia es mucho menor, por lo tanto la educación no parece afectar demasiado el uso de internet general.
+En la Figura \ref{fig:UsoINEdu} podemos observar que, si bien hay un pequeño aumento en la cantidad de personas que usan el internet a diario mientras mayor es el nivel educativo, aquí la diferencia es mucho menor, por lo tanto la educación no parece afectar demasiado el uso de internet general.
 
 ```{r echo=FALSE, fig.align='center', fig.cap= '\\label{fig:UsoINEdu}Uso internet nivel educativo' }
 PlotUsoInternetPorNivelEducativo()
 ```
 
-En la figura \ref{fig:UsoRSNEdu} vemos un aumento de el uso de paginas redes sociales y paginas similares según aumenta el nivel educativo, con un aumento brusco inicial y luego más lento, por lo que en los niveles medio-alto de educación no habría mucha diferencia como sí la tienen respecto a los niveles mas bajos de educación.
+En la Figura \ref{fig:UsoRSNEdu} vemos un aumento de el uso de paginas redes sociales y paginas similares según aumenta el nivel educativo, con un aumento brusco inicial y luego más lento, por lo que en los niveles medio-alto de educación no habría mucha diferencia como sí la tienen respecto a los niveles mas bajos de educación.
 
 ```{r echo=FALSE, fig.align='center', fig.cap= '\\label{fig:UsoRSNEdu}Uso redes y paginas por nivel educativo' }
 PlotUsoRedesSocialesNivelEducativo()

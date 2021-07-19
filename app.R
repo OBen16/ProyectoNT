@@ -10,7 +10,20 @@ ui <- fluidPage(
       sidebarLayout(
         sidebarPanel(
           selectInput("razonesNoUsoInternetSelect","Detalle",
-                      c("Razones por la que no se usa Internet","Boxplot de Edad","Segun Nivel Educativo", "Segun Departamento"))
+                      c("Razones por la que no se usa Internet","Boxplot de Edad","Gráfico de barras")),
+          conditionalPanel(condition = "input.razonesNoUsoInternetSelect == 'Razones por la que no se usa Internet'",
+                           sliderInput(
+                             inputId = "ed",
+                             label = "Edad:", min = 14, max = 98,
+                             value = c(14,98))
+                           ),
+          conditionalPanel(condition = "input.razonesNoUsoInternetSelect == 'Gráfico de barras'",
+                           radioButtons("elegirgraf", "Gráfico de barras uso de internet según:", c("Departamento","Nivel educativo")),
+                           sliderInput(
+                             inputId = "ed2",
+                             label = "Edad:", min = 14, max = 98,
+                             value = c(14,98))
+          )
         ),
         mainPanel(
           conditionalPanel(condition = "input.razonesNoUsoInternetSelect == 'Razones por la que no se usa Internet'",
@@ -19,11 +32,8 @@ ui <- fluidPage(
           conditionalPanel(condition = "input.razonesNoUsoInternetSelect == 'Boxplot de Edad'",
             plotOutput("edadPersonasUsanInternet")
           ),
-          conditionalPanel(condition = "input.razonesNoUsoInternetSelect == 'Segun Nivel Educativo'",
-            plotOutput("usoInternetNivelEducativo")
-          ),
-          conditionalPanel(condition = "input.razonesNoUsoInternetSelect == 'Segun Departamento'",
-            plotOutput("usoInternetDepartamento")
+          conditionalPanel(condition = "input.razonesNoUsoInternetSelect == 'Gráfico de barras'",
+          plotOutput("usoInternetgrafbar")
           )
         )
       )
@@ -82,11 +92,61 @@ ui <- fluidPage(
 )
 
 server <-function(input, output){
-  # Seccion 1: plot razones de no uso de Internet 
-  output$razonesNoUsoInternet      <- renderPlot({PlotRazonesNoUsoInternet()})
+  # Seccion 1: plot razones de no uso de Internet
+  output$razonesNoUsoInternet      <- renderPlot({
+    nousa<- filter(datos,C8>=input$ed[1] & C8<=input$ed[2]) %>% filter(C9==2 & C24!=99)
+    plot1<-  nousa %>% 
+      ggplot(aes(x=fct_rev(fct_infreq(as.factor(C24))),fill=as.factor(C24)))+geom_bar(stat = "count",aes(y = (..count..)/sum(..count..)))+scale_x_discrete(labels=c(
+      "1"="No sabe como podria servirle",
+      "2"="No sabe usarlo",
+      "3"="No tiene dispositivos digitales",
+      "4"="Le resulta caro",
+      "5"="No tiene tiempo",
+      "6"="Discapacidad",
+      "7"="No le interesa o no quiere",
+      "8"="Falta de conocimiento de idioma extranjero",
+      "9"="Inseguro respecto al contenido",
+      "10"="Le preocupa privacidad",
+      "11"="Otra"))+coord_flip()+labs(fill="Motivo de no uso",x="Razon",y="Cantidad")+scale_fill_brewer(palette="Paired",labels=c(
+        "1"="No sabe como podria servirle",
+        "2"="No sabe usarlo",
+        "3"="No tiene dispositivos digitales",
+        "4"="Le resulta caro",
+        "5"="No tiene tiempo",
+        "6"="Discapacidad",
+        "7"="No le interesa o no quiere",
+        "8"="Falta de conocimiento de idioma extranjero",
+        "9"="Inseguro respecto al contenido",
+        "10"="Le preocupa privacidad",
+        "11"="Otra"))+scale_y_continuous(labels = scales::percent)
+    print(plot1)
+  })
   output$edadPersonasUsanInternet  <- renderPlot({PlotEdadPersonasUsanInternet()})
-  output$usoInternetNivelEducativo <- renderPlot({PlotUsoInternetNivelEducativo()})
-  output$usoInternetDepartamento   <- renderPlot({PlotUsoInternetDepartamento()})
+  output$usoInternetgrafbar <- renderPlot({
+    datosgrafbar<- filter(datos,C8>=input$ed2[1] & C8<=input$ed2[2])
+    if(input$elegirgraf=="Nivel educativo"){
+      datosgrafbar %>% ggplot(aes(fill = as.factor(C9), x = as.factor(niveledu))) + geom_bar(position = "fill") +
+        labs(y = "Proporcion", x = "Nivel educativo", fill = "Usa internet") +
+        scale_fill_brewer(palette = "Dark2", labels = c("1" = "Si", "2" ="No"))
+      }else{
+      datosgrafbar %>% ggplot(aes(fill = as.factor(C9), x = fct_reorder(as.factor(DOMDEPARTAMENTO),-as.numeric(C9),mean))) + geom_bar(position = "fill") +
+          labs(y = "Proporcion", x = "Departamento", fill="Usa internet") +
+          scale_fill_brewer(palette="Dark2",labels=c("1"="Si","2"="No")) + scale_x_discrete(labels=c("1"="Montevideo",
+                                                                                                     "3"="Canelones",
+                                                                                                     "4"="Cerro Largo",
+                                                                                                     "5"="Colonia",
+                                                                                                     "8"="Florida",
+                                                                                                     "10"="Maldonado",
+                                                                                                     "6"="Durazno",
+                                                                                                     "11"="Paysandu",
+                                                                                                     "12"="Rio Negro",
+                                                                                                     "13"="Rivera",
+                                                                                                     "14"="Rocha",
+                                                                                                     "16"="San José",
+                                                                                                     "18"="Tacuarembó")) +
+          theme(axis.text.x = element_text(angle = 270, vjust = 0))
+      }
+    })
   
   #Seccion 2: Incidencia del uso de Internet por nivel educativo
   g1<-reactive(PlotUsoInternetTrabajoNivelEducativo()+
