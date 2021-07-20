@@ -105,19 +105,19 @@ PlotUsoRedesSocialesNivelEducativo()
 Una característica importante del uso de internet son las redes sociales. Estas son un reflejo de la conectividad y el entretenimiento entre las personas. Estas en general tienen un uso segmentado por edad.  En la Figura \ref{fig:UsoFacebookDepartamento} se aprecia la popularidad de la red Facebook donde el mayor uso se usa en un uso habitual en la semana, como al menos un uso frecuente. Es interesante ver que las personas que nunca usan Facebook tienen el mismo peso que las que lo utilizan eventualmente. 
 
 ```{r echo=FALSE, fig.align='center', fig.cap= '\\label{fig:UsoFacebookDepartamento}Uso de Facebook segun departamento' }
-PlotUsoFacebookDepartamento()
+PlotUsoFacebookDepartamento(1)
 ```
 
 En la Figura \ref{fig:UsoTwitterDepartamento} se puede ver que la popularidad de Twitter no es tan alta como la de Facebook en la muestra. Este comportamiento se repite sistemáticamente con otras redes sociales principales como Twitter y WhatsApp correspondientemente. La mayoría de la muestra nunca utilizo esta red, y el uso frecuente es muy bajo. 
 
 ```{r echo=FALSE, fig.align='center', fig.cap= '\\label{fig:UsoTwitterDepartamento}Uso de Twitter segun departamento' }
-PlotUsoTwitterDepartamento()
+PlotUsoTwitterDepartamento(1)
 ```
 
 En la Figura \ref{fig:UsoWhatsappDepartamento} se puede ver que el uso de WhatsApp es totalmente radicalizado en la muestra. La mayoría de las personas en la muestra utilizan WhatsApp frecuentemente. Lo cual es de esperar, ya que es un medio de comunicación indispensable en la comunicación actual. 
 
 ```{r echo=FALSE, fig.align='center', fig.cap= '\\label{fig:UsoWhatsappDepartamento}Uso de Whatsapp segun departamento' }
-PlotUsoWhatsAppDepartamento()
+PlotUsoWhatsAppDepartamento(1)
 ```
 
 Se creó un índice de uso de Redes sociales entre el intervalo 0 a 1. Donde 0 significa que una persona no utiliza ninguna red social y 1 significa que utiliza con mucha frecuencia todas las redes sociales. Este índice se promedia por departamento. 

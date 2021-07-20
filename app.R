@@ -153,10 +153,10 @@ server <-function(input, output){
   output$TabVar<-renderDataTable({TablaVariables()})
   
   #Seccion 3: Uso de redes sociales y caracterizacion por departamentos
-  output$usoFacebookDepartamento      <- renderPlot({PlotUsoFacebookDepartamento()})
-  output$usoWhatsAppDepartamento      <- renderPlot({PlotUsoWhatsAppDepartamento()})
-  output$usoTwitterDepartamento      <- renderPlot({PlotUsoTwitterDepartamento()})
-  output$usoInstagramDepartamento      <- renderPlot({PlotUsoInstagramDepartamento()})
+  output$usoFacebookDepartamento      <- renderPlot({PlotUsoFacebookDepartamento(1)})
+  output$usoWhatsAppDepartamento      <- renderPlot({PlotUsoWhatsAppDepartamento(1)})
+  output$usoTwitterDepartamento      <- renderPlot({PlotUsoTwitterDepartamento(1)})
+  output$usoInstagramDepartamento      <- renderPlot({PlotUsoInstagramDepartamento(1)})
   output$indiceUsoRedesSociales      <- renderPlot({PlotIndiceUsoRedesSociales()})
 }
 shinyApp(ui, server)

@@ -214,9 +214,9 @@ PlotUsoFacebookIndiceDepartamento = function(indice_departamento, datos){
 
 
 #Gráfico Pie 3d  del uso de Facebook segun departamento
-PlotUsoFacebookDepartamento <- function() {
+PlotUsoFacebookDepartamento <- function(index) {
   data = CreateDFRedesSocialesTotalPorcentaje(datos)
-  PlotUsoFacebookIndiceDepartamento(1, data)
+  PlotUsoFacebookIndiceDepartamento(index, data)
 }
 
 
@@ -247,9 +247,9 @@ PlotUsoWhatsAppIndiceDepartamento = function(indice_departamento, datos){
 }
 
 #Gráfico Pie 3d  del uso de Whatsapp segun departamento
-PlotUsoWhatsAppDepartamento <- function() {
+PlotUsoWhatsAppDepartamento <- function(index) {
   data = CreateDFRedesSocialesTotalPorcentaje(datos)
-  PlotUsoWhatsAppIndiceDepartamento(1, data)
+  PlotUsoWhatsAppIndiceDepartamento(index, data)
 }
 
 
@@ -280,13 +280,13 @@ PlotUsoTwitterIndiceDepartamento = function(indice_departamento, datos){
 }
 
 #Gráfico 3d PIE del uso de TWITTER segun departamento
-PlotUsoTwitterDepartamento <- function() {
+PlotUsoTwitterDepartamento <- function(index) {
   data = CreateDFRedesSocialesTotalPorcentaje(datos)
-  PlotUsoTwitterIndiceDepartamento(1, data)
+  PlotUsoTwitterIndiceDepartamento(index, data)
 }
 
 ################################################
-# plot 3d uso Twitter por departamento indice #
+# plot 3d uso Instagram por departamento indice #
 ################################################
 
 PlotUsoInstagramIndiceDepartamento = function(indice_departamento, datos){
@@ -312,9 +312,9 @@ PlotUsoInstagramIndiceDepartamento = function(indice_departamento, datos){
 }
 
 #Gráfico de barra apiladas  del uso de Instagram segun departamento
-PlotUsoInstagramDepartamento <- function() {
+PlotUsoInstagramDepartamento <- function(index) {
   data = CreateDFRedesSocialesTotalPorcentaje(datos)
-  PlotUsoInstagramIndiceDepartamento(1, data)
+  PlotUsoInstagramIndiceDepartamento(index, data)
 }
 
 
