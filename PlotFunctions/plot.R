@@ -279,70 +279,81 @@ PlotUsoTwitterIndiceDepartamento = function(indice_departamento, datos){
         main= paste("Uso Twitter en " ,dep_name))
 }
 
-
-
 #Gráfico 3d PIE del uso de TWITTER segun departamento
 PlotUsoTwitterDepartamento <- function() {
   data = CreateDFRedesSocialesTotalPorcentaje(datos)
   PlotUsoTwitterIndiceDepartamento(1, data)
 }
 
+################################################
+# plot 3d uso Twitter por departamento indice #
+################################################
+
+PlotUsoInstagramIndiceDepartamento = function(indice_departamento, datos){
+  proporciones <- c(datos$porcentage_Instagram_1[indice_departamento],
+                    datos$porcentage_Instagram_2[indice_departamento],
+                    datos$porcentage_Instagram_3[indice_departamento],
+                    datos$porcentage_Instagram_4[indice_departamento],
+                    datos$porcentage_Instagram_99[indice_departamento])
+  etiqueta_alto = as.character(format(round(proporciones[1] * 100, 2), nsmall = 2))
+  etiqueta_medio = as.character(format(round(proporciones[2] * 100, 2), nsmall = 2))
+  etiqueta_poco = as.character(format(round(proporciones[3] * 100, 2), nsmall = 2))
+  etiqueta_nunca = as.character(format(round(proporciones[4] * 100, 2), nsmall = 2))
+  etiqueta_na = as.character(format(round(proporciones[5] * 100, 2), nsmall = 2))
+  etiquetas <- c(paste("Alto ", etiqueta_alto , "%"), 
+                 paste("Medio ", etiqueta_medio , "%"),
+                 paste("Poco ", etiqueta_poco , "%"), 
+                 paste("Nunca ", etiqueta_nunca , "%"), 
+                 paste("N/A ", etiqueta_na , "%"))
+  dep_name <- val_label(datos$DOMDEPARTAMENTO, as.factor(datos$DOMDEPARTAMENTO[indice_departamento]))
+  pie3D(proporciones,labels=etiquetas,
+        explode=0.1,
+        main= paste("Uso Instagram en " ,dep_name))
+}
 
 #Gráfico de barra apiladas  del uso de Instagram segun departamento
 PlotUsoInstagramDepartamento <- function() {
-  ggplot(datos, aes(fill = as.factor(DOMDEPARTAMENTO), x = as.factor(C18_4))) + geom_bar(stat = "count") +
-    labs(y = "Proporcion", x = "Uso") +
-    scale_fill_discrete("Departamento",labels=c("1"="Montevideo",
-                                                "3"="Canelones",
-                                                "4"="Cerro Largo",
-                                                "5"="Colonia",
-                                                "8"="Florida",
-                                                "10"="Maldonado",
-                                                "6"="Durazno",
-                                                "11"="Paysandu",
-                                                "12"="Rio Negro",
-                                                "13"="Rivera",
-                                                "14"="Rocha",
-                                                "16"="San José",
-                                                "18"="Tacuarembó")) + scale_x_discrete(labels=c("1" = "Alto", "2" = "Medio", "3" = "Poco" , "4" = "Nunca", "99" = "N/A"))
+  data = CreateDFRedesSocialesTotalPorcentaje(datos)
+  PlotUsoInstagramIndiceDepartamento(1, data)
 }
 
-PlotIndiceUsoRedesSociales <- function() {
+
+################################
+# Indice Uso de redes sociales #
+################################
+
+CreateIndiceData <- function(data) {
   # Cambios para crear indice de uso de redes sociales
-  datos = datos %>% mutate(C18_1 = replace(C18_1, C18_1 == 99, 0))
-  datos = datos %>% mutate(C18_2 = replace(C18_2, C18_2 == 99, 0))
-  datos = datos %>% mutate(C18_3 = replace(C18_3, C18_3 == 99, 0))
-  datos = datos %>% mutate(C18_4 = replace(C18_4, C18_4 == 99, 0))
-  datos = datos %>% mutate(C18_5 = replace(C18_5, C18_5 == 99, 0))
-  datos = datos %>% mutate(C18_6 = replace(C18_6, C18_6 == 99, 0))
-  datos = datos %>% mutate(C18_7 = replace(C18_7, C18_7 == 99, 0))
+  data = data %>% mutate(C18_1 = replace(C18_1, C18_1 == 99, 0))
+  data = data %>% mutate(C18_2 = replace(C18_2, C18_2 == 99, 0))
+  data = data %>% mutate(C18_3 = replace(C18_3, C18_3 == 99, 0))
+  data = data %>% mutate(C18_4 = replace(C18_4, C18_4 == 99, 0))
+  data = data %>% mutate(C18_5 = replace(C18_5, C18_5 == 99, 0))
+  data = data %>% mutate(C18_6 = replace(C18_6, C18_6 == 99, 0))
+  data = data %>% mutate(C18_7 = replace(C18_7, C18_7 == 99, 0))
   
-  datos = datos %>% replace_na(list(C18_1 = 0, C18_2 =0,  C18_3 =0,  C18_4 =0, C18_5 =0, C18_6 =0, C18_7 = 0))
+  data = data %>% replace_na(list(C18_1 = 0, C18_2 =0,  C18_3 =0,  C18_4 =0, C18_5 =0, C18_6 =0, C18_7 = 0))
   # se agrega la columna uso_redes_sociales con un indice entre 0 y 1 que maca la intensidad de uso de redes sociales. 
-  datos = mutate(datos, uso_redes_sociales =  1 - ( (( ( C18_1 + C18_2 + C18_3 + C18_4 + C18_5 + C18_6 + C18_7) / 7 ) - 1 ) / 3 )  )
+  data = mutate(data, uso_redes_sociales =  1 - ( (( ( C18_1 + C18_2 + C18_3 + C18_4 + C18_5 + C18_6 + C18_7) / 7 ) - 1 ) / 3 )  )
   
   # se agrupa por apartamento y se hace una media de la nueva columna uso_redes_sociales
   # Aunque hay departamentos con una intensidad de uso menor, el uso se ve homogeneo. 
-  datos %>%
+  data = data %>%
     group_by(DOMDEPARTAMENTO) %>%
     summarise(
       media_uso_redes_sociales = mean(uso_redes_sociales, na.rm = TRUE)
-    ) %>%
-    ggplot(aes(x = as.factor(DOMDEPARTAMENTO), y= media_uso_redes_sociales) ,fill=DOMDEPARTAMENTO) + labs(y = "Indice uso", x = "Departamento") +geom_bar(stat="identity") + scale_x_discrete(labels=c("1"="Montevideo",
-                                                                                                                                     "3"="Canelones",
-                                                                                                                                     "4"="Cerro Largo",
-                                                                                                                                     "5"="Colonia",
-                                                                                                                                     "8"="Florida",
-                                                                                                                                     "10"="Maldonado",
-                                                                                                                                     "6"="Durazno",
-                                                                                                                                     "11"="Paysandu",
-                                                                                                                                     "12"="Rio Negro",
-                                                                                                                                     "13"="Rivera",
-                                                                                                                                     "14"="Rocha",
-                                                                                                                                     "16"="San José",
-                                                                                                                                     "18"="Tacuarembó")) +
-    theme(axis.text.x = element_text(angle = 330))
+    ) 
+  return(data)
 }
+
+PlotIndiceUsoRedesSociales <- function() {
+  data = CreateIndiceData(datos)
+}
+
+
+#############################
+# Tabla de valores dinamica #
+#############################
 
 TablaVariables<-function(){datatable(matrix(c("PI",
                                    "CBI",
