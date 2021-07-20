@@ -69,6 +69,13 @@ PlotUsoInternetDepartamento()
 En esta sección nos enfocaremos en analizar si el nivel educativo de la persona influye en su uso del internet, ya sea en el trabajo o en la utilización de redes sociales y páginas web similares.
 En la Figura \ref{fig:UsoITNEdu} podemos apreciar un claro aumento en la frecuencia del uso de internet en el trabajo según aumenta el nivel educativo, siendo que las personas con estudio universitario completo que usan el internet todos los días superan el 50% ampliamente, mientras que en los niveles más bajos de educación no alcanzan el 25%.
 
+
+```{r echo=FALSE, fig.align='center'}
+
+TablaVariables()
+
+```
+
 ```{r echo=FALSE, fig.align='center', fig.cap= '\\label{fig:UsoITNEdu}Uso internet en el trabajo' }
 PlotUsoInternetTrabajoNivelEducativo()
 ```

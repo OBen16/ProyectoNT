@@ -3,13 +3,14 @@ library(tidyverse)
 library(ggplot2)
 library(forcats)
 
+library(DT)
 datos <- read_sav("PlotFunctions/datos.sav")
 nousa <- datos %>% filter(C9==2 & C24!=99)
 print(getwd())
 
 PlotRazonesNoUsoInternet <- function() {
   #Gráfico de barras de las razones por las que las personas no usan internet
-  ggplot(nousa,aes(x=(fct_infreq(as.factor(C24))),group=as.factor(C24)))+geom_bar(stat = "count",aes(y = (..count..)/sum(..count..)))+scale_x_discrete(labels=c(
+  ggplot(nousa,aes(x=fct_rev(fct_infreq(as.factor(C24))),fill=as.factor(C24)))+geom_bar(stat = "count")+scale_x_discrete(labels=c(
     "1"="No sabe como podria servirle",
     "2"="No sabe usarlo",
     "3"="No tiene dispositivos digitales",
@@ -20,8 +21,20 @@ PlotRazonesNoUsoInternet <- function() {
     "8"="Falta de conocimiento de idioma extranjero",
     "9"="Inseguro respecto al contenido",
     "10"="Le preocupa privacidad",
-    "11"="Otra"))+labs(fill=NULL,x="Razon",y="Cantidad")+scale_fill_brewer(palette="Paired",labels=NULL)+scale_y_continuous(labels = scales::percent)+
-    theme(axis.text.x = element_text(angle = 270, vjust = 0))
+    "11"="Otra"))+coord_flip()+labs(fill="Motivo de no uso",x="Razon",y="Cantidad")+scale_fill_brewer(palette="Paired",labels=c(
+      "1"="No sabe como podria servirle",
+      "2"="No sabe usarlo",
+      "3"="No tiene dispositivos digitales",
+      "4"="Le resulta caro",
+      "5"="No tiene tiempo",
+      "6"="Discapacidad",
+      "7"="No le interesa o no quiere",
+      "8"="Falta de conocimiento de idioma extranjero",
+      "9"="Inseguro respecto al contenido",
+      "10"="Le preocupa privacidad",
+      "11"="Otra"))+ 
+    stat_count(geom = "text",
+               aes(label = ..count..),position=position_stack(vjust=0.5))
 }
 
 #Boxplot de eded de las personas que usan internet y las que no
@@ -78,12 +91,12 @@ PlotUsoInternetTrabajoNivelEducativo <- function() {
                         "Con menor frecuencia",
                         "No utilizó",
                         "S/D"))+
-    scale_x_discrete(labels=c("Primaria incompleta",
-                     "Ciclo Básico incompleto",
-                     "Segundo Ciclo incompleto",
-                     "Terciaria incompleta",
-                     "Terciaria no Universitaria",
-                     "Terciaria Universitaria"))+
+    scale_x_discrete(labels=c("PI",
+                     "CBI",
+                     "SCI",
+                     "TI",
+                     "TNU",
+                     "TU"))+
     labs(x="Nivel educativo",y="Proporcion")
 }
 
@@ -92,20 +105,19 @@ PlotUsoInternetPorNivelEducativo <- function() {
   datos$C11
   datos%>%filter(!is.na(C11))%>%
     ggplot(aes(x=as.factor(niveledu),fill=as.factor(C11)))+geom_bar(position = "fill")+
-    scale_x_discrete(labels=c("Primaria incompleta",
-                              "Ciclo Básico incompleto",
-                              "Segundo Ciclo incompleto",
-                              "Terciaria incompleta",
-                              "Terciaria no Universitaria",
-                              "Terciaria Universitaria"))+
+    scale_x_discrete(labels=c("PI",
+                              "CBI",
+                              "SCI",
+                              "TI",
+                              "TNU",
+                              "TU"))+
     scale_fill_discrete("Uso internet",breaks=c(1,2,3,4,99),
                         labels=c("Todos los dias",
                                  "Al menos una vez a la semana",
                                  "Con menor frecuencia",
                                  "No utilizó",
                                  "S/D"))+
-    labs(x="Nivel educativo",y="Proporcion")+
-    theme(axis.text.x = element_text(angle = 330))
+    labs(x="Nivel educativo",y="Proporcion")
 
 }
 
@@ -114,17 +126,16 @@ PlotUsoRedesSocialesNivelEducativo <- function() {
   datos$C9_1
   datos%>%filter(!is.na(C9_1))%>%
     ggplot(aes(x=as.factor(niveledu),fill=as.factor(C9_1)))+geom_bar(position = "fill")+
-    scale_x_discrete(labels=c("Primaria incompleta",
-                              "Ciclo Básico incompleto",
-                              "Segundo Ciclo incompleto",
-                              "Terciaria incompleta",
-                              "Terciaria no Universitaria",
-                              "Terciaria Universitaria"))+
+    scale_x_discrete(labels=c("PI",
+                              "CBI",
+                              "SCI",
+                              "TI",
+                              "TNU",
+                              "TU"))+
     scale_fill_discrete("Uso de redes",
                         breaks=c(1,2),
                         labels=c("Si","No"))+
-    labs(x="Nivel educativo",y="Proporcion")+
-    theme(axis.text.x = element_text(angle = 330))
+    labs(x="Nivel educativo",y="Proporcion")
 }
 
 
@@ -243,3 +254,17 @@ PlotIndiceUsoRedesSociales <- function() {
     theme(axis.text.x = element_text(angle = 330))
 }
 
+TablaVariables<-function(){datatable(matrix(c("PI",
+                                   "CBI",
+                                   "SCI",
+                                   "TI",
+                                   "TNU",
+                                   "TU",
+                                   "Primaria incompleta",
+                                   "Ciclo Basico incompleto",
+                                   "Segundo Ciclo incompleto",
+                                   "Terciaria incompleta",
+                                   "Terciaria no Universitaria",
+                                   "Terciaria Universitaria"),nrow = 6,ncol = 2),
+                          colnames = c("Abreviacion","Variable"))
+  }

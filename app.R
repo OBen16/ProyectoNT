@@ -43,15 +43,12 @@ ui <- fluidPage(
       sidebarLayout(
         sidebarPanel(
           selectInput("usoInternetNivelEduSelect","Detalle",
-                      c("Uso internet en el trabajo","Uso internet por nivel educativo","Uso redes por nivel educativo"))
+                      c("Uso internet en el trabajo","Uso internet por nivel educativo","Uso redes por nivel educativo")),
+          dataTableOutput("TabVar")
         ),
         mainPanel(
           conditionalPanel(condition = "input.usoInternetNivelEduSelect == 'Uso internet en el trabajo'",
-                           plotOutput("usoInternetTrabajoNivelEducativo"),
-                           sliderInput("grados","Grados",
-                                       min = 0,
-                                       max=360,
-                                       value = 300)
+                           plotOutput("usoInternetTrabajoNivelEducativo")
           ),
           conditionalPanel(condition = "input.usoInternetNivelEduSelect == 'Uso internet por nivel educativo'",
                            plotOutput("usoInternetPorNivelEducativo")
@@ -149,11 +146,12 @@ server <-function(input, output){
     })
   
   #Seccion 2: Incidencia del uso de Internet por nivel educativo
-  g1<-reactive(PlotUsoInternetTrabajoNivelEducativo()+
-                 theme(axis.text.x = element_text(angle = input$grados)))
+  g1<-reactive(PlotUsoInternetTrabajoNivelEducativo())
   output$usoInternetTrabajoNivelEducativo <- renderPlot({g1()})
   output$usoInternetPorNivelEducativo  <- renderPlot({PlotUsoInternetPorNivelEducativo()})
   output$usoRedesSocialesNivelEducativo <- renderPlot({PlotUsoRedesSocialesNivelEducativo()})
+  output$TabVar<-renderDataTable({TablaVariables()})
+  
   #Seccion 3: Uso de redes sociales y caracterizacion por departamentos
   output$usoFacebookDepartamento      <- renderPlot({PlotUsoFacebookDepartamento()})
   output$usoWhatsAppDepartamento      <- renderPlot({PlotUsoWhatsAppDepartamento()})
