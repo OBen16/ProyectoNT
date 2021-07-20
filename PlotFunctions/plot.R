@@ -213,32 +213,46 @@ PlotUsoFacebookIndiceDepartamento = function(indice_departamento, datos){
 }
 
 
-#Gráfico de barra apiladas  del uso de Facebook segun departamento
+#Gráfico Pie 3d  del uso de Facebook segun departamento
 PlotUsoFacebookDepartamento <- function() {
   data = CreateDFRedesSocialesTotalPorcentaje(datos)
   PlotUsoFacebookIndiceDepartamento(1, data)
 }
 
-PlotUsoFacebookDepartamento()
-#Gráfico de barra apiladas  del uso de Whatsapp segun departamento
-PlotUsoWhatsAppDepartamento <- function() {
-ggplot(datos, aes(fill = as.factor(DOMDEPARTAMENTO), x = as.factor(C18_2))) + geom_bar(stat = "count") +
-  labs(y = "Proporcion", x = "Uso") +
-  scale_fill_discrete("Departamento",labels=c("1"="Montevideo",
-                                             "3"="Canelones",
-                                             "4"="Cerro Largo",
-                                             "5"="Colonia",
-                                             "8"="Florida",
-                                             "10"="Maldonado",
-                                             "6"="Durazno",
-                                             "11"="Paysandu",
-                                             "12"="Rio Negro",
-                                             "13"="Rivera",
-                                             "14"="Rocha",
-                                             "16"="San José",
-                                             "18"="Tacuarembó")) + scale_x_discrete(labels=c("1" = "Alto", "2" = "Medio", "3" = "Poco" , "4" = "Nunca", "99" = "N/A"))
 
+################################################
+# plot 3d uso WhatsApp por departamento indice #
+################################################
+
+PlotUsoWhatsAppIndiceDepartamento = function(indice_departamento, datos){
+  proporciones <- c(datos$porcentage_WhatsApp_1[indice_departamento],
+                    datos$porcentage_WhatsApp_2[indice_departamento],
+                    datos$porcentage_WhatsApp_3[indice_departamento],
+                    datos$porcentage_WhatsApp_4[indice_departamento],
+                    datos$porcentage_WhatsApp_99[indice_departamento])
+  etiqueta_alto = as.character(format(round(proporciones[1] * 100, 2), nsmall = 2))
+  etiqueta_medio = as.character(format(round(proporciones[2] * 100, 2), nsmall = 2))
+  etiqueta_poco = as.character(format(round(proporciones[3] * 100, 2), nsmall = 2))
+  etiqueta_nunca = as.character(format(round(proporciones[4] * 100, 2), nsmall = 2))
+  etiqueta_na = as.character(format(round(proporciones[5] * 100, 2), nsmall = 2))
+  etiquetas <- c(paste("Alto ", etiqueta_alto , "%"), 
+                 paste("Medio ", etiqueta_medio , "%"),
+                 paste("Poco ", etiqueta_poco , "%"), 
+                 paste("Nunca ", etiqueta_nunca , "%"), 
+                 paste("N/A ", etiqueta_na , "%"))
+  dep_name <- val_label(datos$DOMDEPARTAMENTO, as.factor(datos$DOMDEPARTAMENTO[indice_departamento]))
+  pie3D(proporciones,labels=etiquetas,
+        explode=0.1,
+        main= paste("Uso WhatsApp en " ,dep_name))
 }
+
+#Gráfico Pie 3d  del uso de Whatsapp segun departamento
+PlotUsoWhatsAppDepartamento <- function() {
+  data = CreateDFRedesSocialesTotalPorcentaje(datos)
+  PlotUsoWhatsAppIndiceDepartamento(1, data)
+}
+
+
 
 #Gráfico de barra apiladas  del uso de TWITTER segun departamento
 PlotUsoTwitterDepartamento <- function() {
