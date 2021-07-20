@@ -14,6 +14,9 @@ library(here)
 library(plotly)
 # grafico pie
 library(scales)
+library(plotrix)
+#general
+library(labelled)
 
 
 datos <- read_sav("PlotFunctions/datos.sav")
@@ -183,27 +186,40 @@ CreateDFRedesSocialesTotalPorcentaje <- function(datos) {
   return(datos_RS)
 }
 
+################################################
+# plot 3d uso Facebook por departamento indice #
+################################################
+
+PlotUsoFacebookIndiceDepartamento = function(indice_departamento, datos){
+  proporciones <- c(datos$porcentage_Facebook_1[indice_departamento],
+                    datos$porcentage_Facebook_2[indice_departamento],
+                    datos$porcentage_Facebook_3[indice_departamento],
+                    datos$porcentage_Facebook_4[indice_departamento],
+                    datos$porcentage_Facebook_99[indice_departamento])
+  etiqueta_alto = as.character(format(round(proporciones[1] * 100, 2), nsmall = 2))
+  etiqueta_medio = as.character(format(round(proporciones[2] * 100, 2), nsmall = 2))
+  etiqueta_poco = as.character(format(round(proporciones[3] * 100, 2), nsmall = 2))
+  etiqueta_nunca = as.character(format(round(proporciones[4] * 100, 2), nsmall = 2))
+  etiqueta_na = as.character(format(round(proporciones[5] * 100, 2), nsmall = 2))
+  etiquetas <- c(paste("Alto ", etiqueta_alto , "%"), 
+                 paste("Medio ", etiqueta_medio , "%"),
+                 paste("Poco ", etiqueta_poco , "%"), 
+                 paste("Nunca ", etiqueta_nunca , "%"), 
+                 paste("N/A ", etiqueta_na , "%"))
+  dep_name <- val_label(datos$DOMDEPARTAMENTO, as.factor(datos$DOMDEPARTAMENTO[indice_departamento]))
+  pie3D(proporciones,labels=etiquetas,
+        explode=0.1,
+        main= paste("Uso Facebook en " ,dep_name))
+}
+
 
 #Gráfico de barra apiladas  del uso de Facebook segun departamento
 PlotUsoFacebookDepartamento <- function() {
-  ggplot(datos, aes(fill = as.factor(DOMDEPARTAMENTO), x = as.factor(C18_1))) + geom_bar(stat = "count") +
-    labs(y = "Proporcion", x = "Uso") +
-  scale_fill_discrete("Departamento",labels=c("1"="Montevideo",
-                                             "3"="Canelones",
-                                             "4"="Cerro Largo",
-                                             "5"="Colonia",
-                                             "8"="Florida",
-                                             "10"="Maldonado",
-                                             "6"="Durazno",
-                                             "11"="Paysandu",
-                                             "12"="Rio Negro",
-                                             "13"="Rivera",
-                                             "14"="Rocha",
-                                             "16"="San José",
-                                             "18"="Tacuarembó")) + scale_x_discrete(labels=c("1" = "Alto", "2" = "Medio", "3" = "Poco" , "4" = "Nunca", "99" = "N/A"))
-
+  data = CreateDFRedesSocialesTotalPorcentaje(datos)
+  PlotUsoFacebookIndiceDepartamento(1, data)
 }
 
+PlotUsoFacebookDepartamento()
 #Gráfico de barra apiladas  del uso de Whatsapp segun departamento
 PlotUsoWhatsAppDepartamento <- function() {
 ggplot(datos, aes(fill = as.factor(DOMDEPARTAMENTO), x = as.factor(C18_2))) + geom_bar(stat = "count") +
