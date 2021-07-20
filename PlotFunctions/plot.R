@@ -346,10 +346,81 @@ CreateIndiceData <- function(data) {
   return(data)
 }
 
-PlotIndiceUsoRedesSociales <- function() {
-  data = CreateIndiceData(datos)
+AddIndexDepartamentoMapa <- function(data) {
+  # cosas raras de R
+  data <- data %>% mutate(id = MapDep(DOMDEPARTAMENTO) )
+  index = 0
+  for (i in data$DOMDEPARTAMENTO){
+    index = index + 1
+    data$id[index] = MapDepartamento(data$DOMDEPARTAMENTO[index])
+  }
+  return(data)
 }
 
+MapDep = function(i){
+  return(i*1)
+}
+
+MapDepartamento = function(i){
+  if (i==1){
+    departamento = "0" # Montevideo
+  } else if ( i == 2) {
+    departamento = "1" # Artigas
+  } else if ( i == 3) {
+    departamento =  "2" # Canelones
+  }else if ( i == 4) {
+    departamento = "19" # Cerro Largo
+  }else if ( i == 5) {
+    departamento =  "3" # Colonia
+  }else if ( i == 6) {
+    departamento = "4" # Durazno
+  }else if ( i == 7) {
+    departamento = "17" # Flores
+  }else if ( i == 8) {
+    departamento = "5" # Florida
+  }else if ( i == 9) {
+    departamento =  "6" # Lavalleja
+  }else if ( i == 10) {
+    departamento = "18" # Maldonado
+  } else if ( i == 11) {
+    departamento = "7" # Paysandu
+  }else if ( i == 12) {
+    departamento =  "8" # Rio Negro
+  } else if ( i == 13) {
+    departamento =  "9" # Rivera
+  }else if ( i == 14) {
+    departamento = "10" # Rocha
+  }else if ( i == 15) {
+    departamento = "11" # Salto
+  }else if ( i == 16) {
+    departamento =  "12" # San Jose
+  }else if ( i == 17) {
+    departamento = "13" # Soriano
+  }else if ( i == 18) {
+    departamento =  "16" # Tacuarembo
+  }else if ( i == 19) {
+    departamento = "14" # Flores
+  }
+  return(departamento)
+}
+
+PlotIndiceUsoRedesSociales <- function() {
+  data = CreateIndiceData(datos)
+  # es necesario hacer el mapeo de indices entre el mapa
+  # y el que esta en la BD.
+  data = AddIndexDepartamentoMapa(data)
+  
+  # Uruguay Plot Map
+  sp_depto <- readOGR("PlotFunctions/ine_depto.shp")
+  dframe_depto <- ggplot2::fortify(sp_depto) #conviere a data.frame
+  # JOIN by id
+  mapa <- left_join(dframe_depto, data, by = "id")
+  # Finally plot Uy!
+  ggplot(mapa, aes(long, lat, group = group))+
+    geom_polygon(aes(fill = media_uso_redes_sociales), color = "white")+
+    scale_fill_viridis_c()
+  
+}
 
 #############################
 # Tabla de valores dinamica #
