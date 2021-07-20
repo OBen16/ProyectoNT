@@ -2,6 +2,8 @@ library(haven)
 library(tidyverse)
 library(ggplot2)
 library(forcats)
+library(xtable)
+options(xtable.comment = FALSE)
 
 library(DT)
 datos <- read_sav("PlotFunctions/datos.sav")
@@ -265,6 +267,34 @@ TablaVariables<-function(){datatable(matrix(c("PI",
                                    "Segundo Ciclo incompleto",
                                    "Terciaria incompleta",
                                    "Terciaria no Universitaria",
-                                   "Terciaria Universitaria"),nrow = 6,ncol = 2),
+                                   "Terciaria Universitaria"),nrow = 6, ncol = 2),
                           colnames = c("Abreviacion","Variable"))
   }
+
+TablaVar<-function(){
+  TablaVariables<-data.frame(matrix(c("PI",
+                                      "CBI",
+                                      "SCI",
+                                      "TI",
+                                      "TNU",
+                                      "TU",
+                                      "Primaria incompleta",
+                                      "Ciclo Basico incompleto",
+                                      "Segundo Ciclo incompleto",
+                                      "Terciaria incompleta",
+                                      "Terciaria no Universitaria",
+                                      "Terciaria Universitaria"),nrow = 6, ncol = 2))
+  colnames(TablaVariables)<-c("Abreviacion","Variable")
+  print(xtable(TablaVariables),include.rownames=FALSE)
+}
+
+tabvar<-function(){
+  tablavariables<-data.frame(matrix(c("Departamento","Departamento donde vive la persona.",
+                                      "Uso de internet","Si la persona usa internet o no.",
+                                      "Edad","Edad de la persona.","Frecuencia de uso de internet",
+                                      "Que tanto usa la persona el internet.","Motivos de no uso de internet",
+                                      "Razones de quienes no usan internet para no usarlo.",
+                                      "Nivel educativo","Nivel educativo alcanzado."),ncol=2))
+  colnames(tablavariables)<-c("Variable","Descripcion")
+  print(xtable(tablavariables),include.rownames=FALSE)
+}

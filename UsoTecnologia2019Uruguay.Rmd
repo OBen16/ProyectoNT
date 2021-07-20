@@ -34,6 +34,13 @@ Los datos utilizados para realizar este trabajo fueron obtenidos en la Encuesta 
 
 La base de datos tiene muchas variables, pero las más interesantes a analizar son por ejemplo si las personas usan o no el internet, con qué frecuencia lo hacen, el uso de redes sociales y los motivos por los que algunas personas no utilizan internet. Además, son de interés las variables edad, nivel educativo, y departamento para ver si hay diferentes resultados para distintas respuestas de estas preguntas.
 
+En la tabla de la siguiente tabla vemos la descripción de las variables utilizadas.
+
+```{r ,echo=FALSE, results='asis'}
+tabvar()
+```
+
+
 ## Análisis Exploratorio
 
 
@@ -70,9 +77,9 @@ En esta sección nos enfocaremos en analizar si el nivel educativo de la persona
 En la Figura \ref{fig:UsoITNEdu} podemos apreciar un claro aumento en la frecuencia del uso de internet en el trabajo según aumenta el nivel educativo, siendo que las personas con estudio universitario completo que usan el internet todos los días superan el 50% ampliamente, mientras que en los niveles más bajos de educación no alcanzan el 25%.
 
 
-```{r echo=FALSE, fig.align='center'}
+```{r echo=FALSE, fig.align='center', results='asis'}
 
-TablaVariables()
+TablaVar()
 
 ```
 
