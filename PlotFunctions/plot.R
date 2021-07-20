@@ -4,8 +4,18 @@ library(ggplot2)
 library(forcats)
 library(xtable)
 options(xtable.comment = FALSE)
-
 library(DT)
+#maps library's
+library(maps)
+library(dplyr)
+library(maptools)
+library(rgdal)
+library(here)
+library(plotly)
+# grafico pie
+library(scales)
+
+
 datos <- read_sav("PlotFunctions/datos.sav")
 nousa <- datos %>% filter(C9==2 & C24!=99)
 print(getwd())
