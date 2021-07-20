@@ -151,6 +151,39 @@ PlotUsoRedesSocialesNivelEducativo <- function() {
 }
 
 
+CreateDFRedesSocialesTotalPorcentaje <- function(datos) {
+  datos_RS = datos %>%
+    group_by(DOMDEPARTAMENTO) %>%
+    summarise(
+      # Facebook
+      porcentage_Facebook_1 = sum(C18_1 == 1, na.rm = TRUE) / sum(C18_1 >=1 & C18_1 <= 99 , na.rm = TRUE),
+      porcentage_Facebook_2 = sum(C18_1 == 2, na.rm = TRUE) / sum(C18_1 >=1 & C18_1 <= 99 , na.rm = TRUE),
+      porcentage_Facebook_3 = sum(C18_1 == 3, na.rm = TRUE) / sum(C18_1 >=1 & C18_1 <= 99 , na.rm = TRUE),
+      porcentage_Facebook_4 = sum(C18_1 == 4, na.rm = TRUE) / sum(C18_1 >=1 & C18_1 <= 99 , na.rm = TRUE),
+      porcentage_Facebook_99 = sum(C18_1 == 99, na.rm = TRUE) / sum(C18_1 >=1 & C18_1 <= 99 , na.rm = TRUE),
+      # Whats app
+      porcentage_WhatsApp_1 = sum(C18_2 == 1, na.rm = TRUE) / sum(C18_2 >=1 & C18_2 <= 4 , na.rm = TRUE),
+      porcentage_WhatsApp_2 = sum(C18_2 == 2, na.rm = TRUE) / sum(C18_2 >=1 & C18_2 <= 4 , na.rm = TRUE),
+      porcentage_WhatsApp_3 = sum(C18_2 == 3, na.rm = TRUE) / sum(C18_2 >=1 & C18_2 <= 4 , na.rm = TRUE),
+      porcentage_WhatsApp_4 = sum(C18_2 == 4, na.rm = TRUE) / sum(C18_2 >=1 & C18_2 <= 4 , na.rm = TRUE),
+      porcentage_WhatsApp_99 = sum(C18_2 == 99, na.rm = TRUE) / sum(C18_2 >=1 & C18_2 <= 99 , na.rm = TRUE),
+      # Twitter
+      porcentage_Twitter_1 = sum(C18_3 == 1, na.rm = TRUE) / sum(C18_3 >=1 & C18_3 <= 4 , na.rm = TRUE),
+      porcentage_Twitter_2 = sum(C18_3 == 2, na.rm = TRUE) / sum(C18_3 >=1 & C18_3 <= 4 , na.rm = TRUE),
+      porcentage_Twitter_3 = sum(C18_3 == 3, na.rm = TRUE) / sum(C18_3 >=1 & C18_3 <= 4 , na.rm = TRUE),
+      porcentage_Twitter_4 = sum(C18_3 == 4, na.rm = TRUE) / sum(C18_3 >=1 & C18_3 <= 4 , na.rm = TRUE),
+      porcentage_Twitter_99 = sum(C18_3 == 99, na.rm = TRUE) / sum(C18_3 >=1 & C18_3 <= 99 , na.rm = TRUE),
+      # Instagram
+      porcentage_Instagram_1 = sum(C18_4 == 1, na.rm = TRUE) / sum(C18_4 >=1 & C18_4 <= 4 , na.rm = TRUE),
+      porcentage_Instagram_2 = sum(C18_4 == 2, na.rm = TRUE) / sum(C18_4 >=1 & C18_4 <= 4 , na.rm = TRUE),
+      porcentage_Instagram_3 = sum(C18_4 == 3, na.rm = TRUE) / sum(C18_4 >=1 & C18_4 <= 4 , na.rm = TRUE),
+      porcentage_Instagram_4 = sum(C18_4 == 4, na.rm = TRUE) / sum(C18_4 >=1 & C18_4 <= 4 , na.rm = TRUE),
+      porcentage_Instagram_99 = sum(C18_4 == 99, na.rm = TRUE) / sum(C18_4 >=1 & C18_4 <= 99 , na.rm = TRUE),
+    )
+  return(datos_RS)
+}
+
+
 #Gráfico de barra apiladas  del uso de Facebook segun departamento
 PlotUsoFacebookDepartamento <- function() {
   ggplot(datos, aes(fill = as.factor(DOMDEPARTAMENTO), x = as.factor(C18_1))) + geom_bar(stat = "count") +
