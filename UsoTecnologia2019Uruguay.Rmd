@@ -26,13 +26,20 @@ el usuario.
 
 Se organizó el documento en 3 enfoques principales: asociación del uso de redes sociales y su caracterización por departamentos, profundizar las razones por las que algunas personas no utilizan internet en la población, mostrar la incidencia en el uso de internet por nivel educativo.
 
-Es importante tener en cuenta que este trabajo fue realizado con datos obtenidos en una muestra, pero esto no se tuvo en cuenta durante la exploración de los mismos.
+Es importante tener en cuenta que este trabajo fue realizado con datos obtenidos en una muestra, pero esto no se tuvo en cuenta durante la exploración de los mismos. Los datos que se presentan son una analizis descriptivo de la muestra sin tomar en cuenta el disenio muestral ni los ponderadores estimados correspondientes para las proyecciones poblacionales desde la muestra. 
 
 ## Datos
 
-Los datos utilizados para realizar este trabajo fueron obtenidos en la Encuesta de Uso de la Tecnología de la Información y Comunicaciones realizada por el INE (Instituto Nacional de Estadística) en el año 2019. Estos datos se pueden encontrar en la [\textcolor{blue}{página web del INE}](https://ine.gub.uy/web/guest/encuesta-de-uso-de-la-tecnologia-de-la-informacion-y-las-comunicaciones).
+Los datos utilizados para realizar este trabajo fueron obtenidos en la Encuesta de Uso de la Tecnología de la Información y Comunicaciones realizada por el INE (Instituto Nacional de Estadística) en el año 2019. Estos datos se pueden encontrar en la [\textcolor{blue}{página web del INE}](https://ine.gub.uy/web/guest/encuesta-de-uso-de-la-tecnologia-de-la-informacion-y-las-comunicaciones)^[https://ine.gub.uy/web/guest/encuesta-de-uso-de-la-tecnologia-de-la-informacion-y-las-comunicaciones].
 
 La base de datos tiene muchas variables, pero las más interesantes a analizar son por ejemplo si las personas usan o no el internet, con qué frecuencia lo hacen, el uso de redes sociales y los motivos por los que algunas personas no utilizan internet. Además, son de interés las variables edad, nivel educativo, y departamento para ver si hay diferentes resultados para distintas respuestas de estas preguntas.
+
+En la siguiente tabla vemos la descripción de las variables utilizadas.
+
+```{r ,echo=FALSE, results='asis'}
+tabvar()
+```
+
 
 ## Análisis Exploratorio
 
@@ -70,9 +77,9 @@ En esta sección nos enfocaremos en analizar si el nivel educativo de la persona
 En la Figura \ref{fig:UsoITNEdu} podemos apreciar un claro aumento en la frecuencia del uso de internet en el trabajo según aumenta el nivel educativo, siendo que las personas con estudio universitario completo que usan el internet todos los días superan el 50% ampliamente, mientras que en los niveles más bajos de educación no alcanzan el 25%.
 
 
-```{r echo=FALSE, fig.align='center'}
+```{r echo=FALSE, fig.align='center', results='asis'}
 
-TablaVariables()
+TablaVar()
 
 ```
 
@@ -95,22 +102,25 @@ PlotUsoRedesSocialesNivelEducativo()
 
 ### 3. Asociación del uso de redes sociales y su caracterización por departamentos
 
-Una característica importante del uso de internet son las redes sociales. Estas son un reflejo de la conectividad y el entretenimiento entre las personas. Estas en general tienen un uso segmentado por edad.  En la Figura \ref{fig:UsoFacebookDepartamento} se aprecia la popularidad de la red Facebook donde el mayor uso se usa en un uso habitual en la semana, como al menos un uso frecuente. Es interesante ver que las personas que nunca usan Facebook tienen el mismo peso que las que lo utilizan eventualmente. 
+Una característica importante del uso de internet son las redes sociales. Estas son un reflejo de la conectividad y el entretenimiento entre las personas. Estas en general tienen un uso segmentado por edad.  En la Figura \ref{fig:UsoFacebookDepartamento} se aprecia la popularidad de la red Facebook en el departamento de Montevideo donde el mayor uso se usa en un uso habitual en la semana, como al menos un uso frecuente. Es interesante ver que las personas que nunca usan Facebook tienen el mismo peso que las que lo utilizan eventualmente. 
 
 ```{r echo=FALSE, fig.align='center', fig.cap= '\\label{fig:UsoFacebookDepartamento}Uso de Facebook segun departamento' }
-PlotUsoFacebookDepartamento()
+PlotUsoFacebookDepartamento(1)
 ```
 
-En la Figura \ref{fig:UsoTwitterDepartamento} se puede ver que la popularidad de Twitter no es tan alta como la de Facebook en la muestra. Este comportamiento se repite sistemáticamente con otras redes sociales principales como Twitter y WhatsApp correspondientemente. La mayoría de la muestra nunca utilizo esta red, y el uso frecuente es muy bajo. 
+En la Figura \ref{fig:UsoTwitterDepartamentoMontevideo}   se puede ver que la popularidad de Twitter no es tan alta como la de Facebook en la muestra de Montevideo. Este comportamiento se repite sistemáticamente con otras redes sociales principales como  Instagram: Figura \ref{fig:UsoInstagramDepartamentoMontevideo}. La mayoría de la muestra nunca utilizo esta red, y el uso frecuente es muy bajo. 
 
-```{r echo=FALSE, fig.align='center', fig.cap= '\\label{fig:UsoTwitterDepartamento}Uso de Twitter segun departamento' }
-PlotUsoTwitterDepartamento()
+```{r echo=FALSE, fig.align='center', fig.cap= '\\label{fig:UsoTwitterDepartamentoMontevideo}Uso de Twitter segun departamento de Montevideo' }
+PlotUsoTwitterDepartamento(1)
+```
+```{r echo=FALSE, fig.align='center', fig.cap= '\\label{fig:UsoInstagramDepartamentoMontevideo}Uso de Instagram segun departamento de Montevideo' }
+PlotUsoInstagramDepartamento(1)
 ```
 
 En la Figura \ref{fig:UsoWhatsappDepartamento} se puede ver que el uso de WhatsApp es totalmente radicalizado en la muestra. La mayoría de las personas en la muestra utilizan WhatsApp frecuentemente. Lo cual es de esperar, ya que es un medio de comunicación indispensable en la comunicación actual. 
 
 ```{r echo=FALSE, fig.align='center', fig.cap= '\\label{fig:UsoWhatsappDepartamento}Uso de Whatsapp segun departamento' }
-PlotUsoWhatsAppDepartamento()
+PlotUsoWhatsAppDepartamento(1)
 ```
 
 Se creó un índice de uso de Redes sociales entre el intervalo 0 a 1. Donde 0 significa que una persona no utiliza ninguna red social y 1 significa que utiliza con mucha frecuencia todas las redes sociales. Este índice se promedia por departamento. 
