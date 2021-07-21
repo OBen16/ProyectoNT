@@ -64,34 +64,34 @@ ui <- fluidPage(
              sidebarLayout(
                sidebarPanel(
                  selectInput("usoredes","Detalle",
-                             c("Uso de Facebook por departamento","Uso de WhatsApp por departamento",
-                               "Uso de Twitter por departamento","Uso de Instagram por departamento",
-                               "Indice de uso de redes sociales"))
+                             c("Uso de Facebook Montevideo","Uso de WhatsApp Montevideo",
+                               "Uso de Twitter Montevideo","Uso de Instagram Montevideo",
+                               "Indice de uso de redes sociales", "Heatmap por departamentos"))
                ),
                mainPanel(
-                 conditionalPanel(condition = "input.usoredes == 'Uso de Facebook por departamento'",
+                 conditionalPanel(condition = "input.usoredes == 'Uso de Facebook Montevideo'",
                                   plotOutput("usoFacebookDepartamento")
                  ),
-                 conditionalPanel(condition = "input.usoredes == 'Uso de WhatsApp por departamento'",
+                 conditionalPanel(condition = "input.usoredes == 'Uso de WhatsApp Montevideo'",
                                   plotOutput("usoWhatsAppDepartamento")
                  ),
-                 conditionalPanel(condition = "input.usoredes == 'Uso de Twitter por departamento'",
+                 conditionalPanel(condition = "input.usoredes == 'Uso de Twitter Montevideo'",
                                   plotOutput("usoTwitterDepartamento")
                  ),
-                 conditionalPanel(condition = "input.usoredes == 'Uso de Instagram por departamento'",
+                 conditionalPanel(condition = "input.usoredes == 'Uso de Instagram Montevideo'",
                                   plotOutput("usoInstagramDepartamento")
                  ),
                  conditionalPanel(condition = "input.usoredes == 'Indice de uso de redes sociales'",
                                   plotOutput("indiceUsoRedesSociales")
                  ),
-                 conditionalPanel(condition = "input.usoredes != 'Indice de uso de redes sociales'",
-                                  selectInput(inputId = "departamento_redes_sociales",label="Seleccione Departamento",
-                                              choices =  c("Montevideo"=1,
-                                                           "Canelones"=2,
-                                                           "Cerro Largo"=3,
-                                                           "Colonia"=4,
-                                                           "Rio Negro"=9,
-                                                           "Tacuarembó"=13), selected=1)
+                 conditionalPanel(condition = "input.usoredes == 'Heatmap por departamentos'",
+                                  plotOutput("heatmapPorDepartamentos")
+                 ),
+                 conditionalPanel(condition = "input.usoredes == 'Heatmap por departamentos'",
+                                  selectInput(inputId = "heatmapInputOption",label="Detalle",
+                                              choices =  c("Sin dendograma"=1,
+                                                           "Dendograma por departamento"=2,
+                                                           "Dendograma por red social"=3), selected=1)
                  )
                )
              ))
@@ -163,68 +163,30 @@ server <-function(input, output){
   output$TabVar<-renderDataTable({TablaVariables()})
   
   #Seccion 3: Uso de redes sociales y caracterizacion por departamentos
+  output$heatmapPorDepartamentos      <- renderPlot({
+    if (input$heatmapInputOption ==1) {
+      indice = 1
+    } else  if (input$heatmapInputOption ==2) {
+      indice = 2
+    }else  if (input$heatmapInputOption ==3) {
+      indice = 3
+    }
+    PlotHeatMapDepartamentosRedesSociales(indice)
+  })
   output$usoFacebookDepartamento      <- renderPlot({
-      if (input$departamento_redes_sociales ==1) {
-        indice = 1
-      } else  if (input$departamento_redes_sociales ==2) {
-        indice = 2
-      }else  if (input$departamento_redes_sociales ==3) {
-        indice = 3
-      }else  if (input$departamento_redes_sociales ==4) {
-        indice = 4
-      }else  if (input$departamento_redes_sociales ==9) {
-        indice = 9
-      }else  if (input$departamento_redes_sociales ==13) {
-        indice = 13
-      }
+      indice = 1
       PlotUsoFacebookDepartamento(indice)
     })
   output$usoWhatsAppDepartamento      <- renderPlot({
-    if (input$departamento_redes_sociales ==1) {
-      indice = 1
-    } else  if (input$departamento_redes_sociales ==2) {
-      indice = 2
-    }else  if (input$departamento_redes_sociales ==3) {
-      indice = 3
-    }else  if (input$departamento_redes_sociales ==4) {
-      indice = 4
-    }else  if (input$departamento_redes_sociales ==9) {
-      indice = 9
-    }else  if (input$departamento_redes_sociales ==13) {
-      indice = 13
-    }
+    indice = 1
     PlotUsoWhatsAppDepartamento(indice)
   })
   output$usoTwitterDepartamento      <- renderPlot({
-    if (input$departamento_redes_sociales ==1) {
-      indice = 1
-    } else  if (input$departamento_redes_sociales ==2) {
-      indice = 2
-    }else  if (input$departamento_redes_sociales ==3) {
-      indice = 3
-    }else  if (input$departamento_redes_sociales ==4) {
-      indice = 4
-    }else  if (input$departamento_redes_sociales ==9) {
-      indice = 9
-    }else  if (input$departamento_redes_sociales ==13) {
-      indice = 13
-    }
+    indice = 1
     PlotUsoTwitterDepartamento(indice)
   })
   output$usoInstagramDepartamento      <- renderPlot({
-    if (input$departamento_redes_sociales ==1) {
-      indice = 1
-    } else  if (input$departamento_redes_sociales ==2) {
-      indice = 2
-    }else  if (input$departamento_redes_sociales ==3) {
-      indice = 3
-    }else  if (input$departamento_redes_sociales ==4) {
-      indice = 4
-    }else  if (input$departamento_redes_sociales ==9) {
-      indice = 9
-    }else  if (input$departamento_redes_sociales ==13) {
-      indice = 13
-    }
+    indice = 1
     PlotUsoInstagramDepartamento(indice)
   })
   output$indiceUsoRedesSociales      <- renderPlot({PlotIndiceUsoRedesSociales()})
