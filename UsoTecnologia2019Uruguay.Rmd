@@ -132,6 +132,19 @@ PlotIndiceUsoRedesSociales()
 En la Figura \ref{fig:IndiceRedesSociales} se puede observar que el índice de uso  de distintas redes sociales es de 0.5 en todos los departamentos. Con un uso de redes sociales homogéneo. Aunque se destacan la utilización de este índice en los departamento de Tacuarembó, Rivera, Paysandú, Colonia y Cerro Largo. Superando el uso en estos departamentos del interior al uso en  la capital, Montevideo. 
 
 
+```{r echo=FALSE, fig.align='center', fig.cap= '\\label{fig:HeatMapDepartamentos}Heatmap uso redes sociales segun departamento' }
+PlotHeatMapDepartamentosRedesSociales(1)
+```
+
+```{r echo=FALSE, fig.align='center', fig.cap= '\\label{fig:HeatMapDepartamentosDenDep}Heatmap uso redes sociales segun departamento con dendograma por departamento.' }
+PlotHeatMapDepartamentosRedesSociales(2)
+```
+
+```{r echo=FALSE, fig.align='center', fig.cap= '\\label{fig:HeatMapDepartamentosDenRed}Heatmap uso redes sociales segun departamento con dendograma por uso de redes sociales. ' }
+PlotHeatMapDepartamentosRedesSociales(3)
+```
+
+
 ## Comentarios finales
 
 Dado que en el trabajo se utilizaron datos muestrales pero no fue realizado el procedimiento más adecuado para ello, no utilizando los expansores correspondientes, las conclusiones que podemos obtener solo son aplicables a esta muestra en particular y no pueden ser generalizadas a la población.

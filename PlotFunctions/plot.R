@@ -391,6 +391,7 @@ PlotHeatMapDepartamentosRedesSociales <- function(option){
   }
   # crea el porcentaje de uso por redes sociales y convierte a matriz
   data = CreateDFRedesSocialesTotalPorcentaje(datos)
+  samp2 = data[,-1]
   mat_data = data.matrix(samp2[,1:ncol(samp2)])
   mat_data = mat_data * 100
   rownames(mat_data) = c("Montevideo",
