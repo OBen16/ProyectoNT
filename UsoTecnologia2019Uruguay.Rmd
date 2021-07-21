@@ -34,7 +34,7 @@ Los datos utilizados para realizar este trabajo fueron obtenidos en la Encuesta 
 
 La base de datos tiene muchas variables, pero las más interesantes a analizar son por ejemplo si las personas usan o no el internet, con qué frecuencia lo hacen, el uso de redes sociales y los motivos por los que algunas personas no utilizan internet. Además, son de interés las variables edad, nivel educativo, y departamento para ver si hay diferentes resultados para distintas respuestas de estas preguntas.
 
-En la tabla de la siguiente tabla vemos la descripción de las variables utilizadas.
+En la siguiente tabla vemos la descripción de las variables utilizadas.
 
 ```{r ,echo=FALSE, results='asis'}
 tabvar()
