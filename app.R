@@ -2,6 +2,7 @@ library(shiny)
 library(tidyverse)
 base::source("./PlotFunctions/plot.R")
 
+
 ui <- fluidPage(
   titlePanel("Uso Tecnologia Uruguay 2019"),
   tabsetPanel(
@@ -82,6 +83,15 @@ ui <- fluidPage(
                  ),
                  conditionalPanel(condition = "input.usoredes == 'Indice de uso de redes sociales'",
                                   plotOutput("indiceUsoRedesSociales")
+                 ),
+                 conditionalPanel(condition = "input.usoredes != 'Indice de uso de redes sociales'",
+                                  selectInput(inputId = "departamento_redes_sociales",label="Seleccione Departamento",
+                                              choices =  c("Montevideo"=1,
+                                                           "Canelones"=2,
+                                                           "Cerro Largo"=3,
+                                                           "Colonia"=4,
+                                                           "Rio Negro"=9,
+                                                           "Tacuarembó"=13), selected=1)
                  )
                )
              ))
@@ -153,10 +163,70 @@ server <-function(input, output){
   output$TabVar<-renderDataTable({TablaVariables()})
   
   #Seccion 3: Uso de redes sociales y caracterizacion por departamentos
-  output$usoFacebookDepartamento      <- renderPlot({PlotUsoFacebookDepartamento(1)})
-  output$usoWhatsAppDepartamento      <- renderPlot({PlotUsoWhatsAppDepartamento(1)})
-  output$usoTwitterDepartamento      <- renderPlot({PlotUsoTwitterDepartamento(1)})
-  output$usoInstagramDepartamento      <- renderPlot({PlotUsoInstagramDepartamento(1)})
+  output$usoFacebookDepartamento      <- renderPlot({
+      if (input$departamento_redes_sociales ==1) {
+        indice = 1
+      } else  if (input$departamento_redes_sociales ==2) {
+        indice = 2
+      }else  if (input$departamento_redes_sociales ==3) {
+        indice = 3
+      }else  if (input$departamento_redes_sociales ==4) {
+        indice = 4
+      }else  if (input$departamento_redes_sociales ==9) {
+        indice = 9
+      }else  if (input$departamento_redes_sociales ==13) {
+        indice = 13
+      }
+      PlotUsoFacebookDepartamento(indice)
+    })
+  output$usoWhatsAppDepartamento      <- renderPlot({
+    if (input$departamento_redes_sociales ==1) {
+      indice = 1
+    } else  if (input$departamento_redes_sociales ==2) {
+      indice = 2
+    }else  if (input$departamento_redes_sociales ==3) {
+      indice = 3
+    }else  if (input$departamento_redes_sociales ==4) {
+      indice = 4
+    }else  if (input$departamento_redes_sociales ==9) {
+      indice = 9
+    }else  if (input$departamento_redes_sociales ==13) {
+      indice = 13
+    }
+    PlotUsoWhatsAppDepartamento(indice)
+  })
+  output$usoTwitterDepartamento      <- renderPlot({
+    if (input$departamento_redes_sociales ==1) {
+      indice = 1
+    } else  if (input$departamento_redes_sociales ==2) {
+      indice = 2
+    }else  if (input$departamento_redes_sociales ==3) {
+      indice = 3
+    }else  if (input$departamento_redes_sociales ==4) {
+      indice = 4
+    }else  if (input$departamento_redes_sociales ==9) {
+      indice = 9
+    }else  if (input$departamento_redes_sociales ==13) {
+      indice = 13
+    }
+    PlotUsoTwitterDepartamento(indice)
+  })
+  output$usoInstagramDepartamento      <- renderPlot({
+    if (input$departamento_redes_sociales ==1) {
+      indice = 1
+    } else  if (input$departamento_redes_sociales ==2) {
+      indice = 2
+    }else  if (input$departamento_redes_sociales ==3) {
+      indice = 3
+    }else  if (input$departamento_redes_sociales ==4) {
+      indice = 4
+    }else  if (input$departamento_redes_sociales ==9) {
+      indice = 9
+    }else  if (input$departamento_redes_sociales ==13) {
+      indice = 13
+    }
+    PlotUsoInstagramDepartamento(indice)
+  })
   output$indiceUsoRedesSociales      <- renderPlot({PlotIndiceUsoRedesSociales()})
 }
 shinyApp(ui, server)
