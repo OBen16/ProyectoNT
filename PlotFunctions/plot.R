@@ -461,10 +461,14 @@ TablaVar<-function(){
 tabvar<-function(){
   tablavariables<-data.frame(matrix(c("Departamento","Departamento donde vive la persona.",
                                       "Uso de internet","Si la persona usa internet o no.",
-                                      "Edad","Edad de la persona.","Frecuencia de uso de internet",
-                                      "Que tanto usa la persona el internet.","Motivos de no uso de internet",
-                                      "Razones de quienes no usan internet para no usarlo.",
-                                      "Nivel educativo","Nivel educativo alcanzado."),ncol=2))
+                                      "Edad","Edad de la persona.",
+                                      "Frecuencia de uso de internet","Que tanto usa la persona el internet.",
+                                      "Motivos de no uso de internet", "Razones de quienes no usan internet para no usarlo.",
+                                      "Nivel educativo", "Nivel educativo alcanzado.",
+                                      "Frecuencia uso de internet en trabajo", "Que tanto usa la persona internet en el trabajo.",
+                                      "Frecuencia uso de redes", "Que tanto usa la persona las redes sociales."),
+                                    ncol=2, byrow = TRUE))
   colnames(tablavariables)<-c("Variable","Descripcion")
   print(xtable(tablavariables),include.rownames=FALSE)
 }
+

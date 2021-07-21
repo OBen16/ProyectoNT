@@ -129,4 +129,15 @@ Se creó un índice de uso de Redes sociales entre el intervalo 0 a 1. Donde 0 s
 PlotIndiceUsoRedesSociales()
 ```
 
-En la Figura \ref{fig:IndiceRedesSociales} se puede observar que el índice de uso  de distintas redes sociales es de 0.5 en todos los departamentos. Con un uso de redes sociales homogéneo. Aunque se destacan la utilización de este índice en los departamento de Tacuarembó, Rivera, Paysandú, Colonia y Cerro Largo. Superando el uso en estos departamentos del interior al uso en  la capital, Montevideo.  
+En la Figura \ref{fig:IndiceRedesSociales} se puede observar que el índice de uso  de distintas redes sociales es de 0.5 en todos los departamentos. Con un uso de redes sociales homogéneo. Aunque se destacan la utilización de este índice en los departamento de Tacuarembó, Rivera, Paysandú, Colonia y Cerro Largo. Superando el uso en estos departamentos del interior al uso en  la capital, Montevideo. 
+
+
+## Comentarios finales
+
+Dado que en el trabajo se utilizaron datos muestrales pero no fue realizado el procedimiento más adecuado para ello, no utilizando los expansores correspondientes, las conclusiones que podemos obtener solo son aplicables a esta muestra en particular y no pueden ser generalizadas a la población.
+
+Podemos observar que de las personas en la muestra, aquellas que no usan internet se concentran en edades más avanzadas, a su vez también son en su mayoría personas con nivel educativo bajo, estos dos factores parecen ser relativamente influyentes en el uso de internet y en su conocimiento acerca del mismo ya que la mitad de las personas que no usan internet afirman que es debido a no saber hacerlo.
+
+Profundizando en el efecto del nivel educativo sobre el uso de internet, se puede ver un claro aumento de la frecuencia de uso de internet en el trabajo conforme aumentan los estudios, por lo que podría deducirse que las personas de la muestra con mayor nivel educativo tienen trabajos que requieren un uso más frecuente de internet.  Por último, sobre el uso de las diferentes redes sociales en los distintos departamentos,  cabe destacar el predomino del uso  general de las mismas en departamentos del interior por sobre el de la capital.
+
+Este trabajo podría haberse desarrollado de una mejor manera si se implementa el uso de los expansores, pero actualmente se carece de los conocimientos necesarios para ello, seria oportuno en un futuro volver a realizar el análisis con los conocimientos necesarios para ello y de esta manera poder generalizar los hallazgos a la población general.
