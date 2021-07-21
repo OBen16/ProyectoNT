@@ -17,6 +17,12 @@ library(scales)
 library(plotrix)
 #general
 library(labelled)
+library(ggmosaic)
+# heatmap
+library("pheatmap")
+require(ggplot2)
+require(colorspace)
+library(grid)
 
 
 datos <- read_sav("PlotFunctions/datos.sav")
@@ -186,9 +192,9 @@ CreateDFRedesSocialesTotalPorcentaje <- function(datos) {
   return(datos_RS)
 }
 
-################################################
-# plot 3d uso Facebook por departamento indice #
-################################################
+##############################################
+# plot  uso Facebook por departamento indice #
+##############################################
 
 PlotUsoFacebookIndiceDepartamento = function(indice_departamento, datos){
   proporciones <- c(datos$porcentage_Facebook_1[indice_departamento],
@@ -201,15 +207,28 @@ PlotUsoFacebookIndiceDepartamento = function(indice_departamento, datos){
   etiqueta_poco = as.character(format(round(proporciones[3] * 100, 2), nsmall = 2))
   etiqueta_nunca = as.character(format(round(proporciones[4] * 100, 2), nsmall = 2))
   etiqueta_na = as.character(format(round(proporciones[5] * 100, 2), nsmall = 2))
-  etiquetas <- c(paste("Alto ", etiqueta_alto , "%"), 
-                 paste("Medio ", etiqueta_medio , "%"),
-                 paste("Poco ", etiqueta_poco , "%"), 
-                 paste("Nunca ", etiqueta_nunca , "%"), 
-                 paste("N/A ", etiqueta_na , "%"))
-  dep_name <- val_label(datos$DOMDEPARTAMENTO, as.factor(datos$DOMDEPARTAMENTO[indice_departamento]))
-  pie3D(proporciones,labels=etiquetas,
-        explode=0.1,
-        main= paste("Uso Facebook en " ,dep_name))
+  porcentajes <- c(etiqueta_alto, etiqueta_medio, etiqueta_poco, etiqueta_nunca, etiqueta_na)
+  etiquetas <- c("Alto ",
+                 "Medio ",
+                 "Poco ", 
+                 "Nunca ", 
+                 "N/A ")
+  # plot
+  data <- data.frame(
+    name = etiquetas,
+    average = proporciones,
+    perct = porcentajes
+  )
+  
+  # Increase bottom margin
+  par(mar=c(6,4,4,4))
+  # Basic Barplot
+  my_bar <- barplot(data$average , border=F , names.arg=data$name , 
+                    las=2 , 
+                    col=c(rgb(0.3,0.1,0.4,0.6) , rgb(0.3,0.5,0.4,0.6) , rgb(0.3,0.9,0.4,0.6) ,  rgb(0.3,0.9,0.4,0.6),  rgb(0.3,0.2,0.2,0.2)) , 
+                    ylim=c(0,1) , 
+                    main="" )
+  text(my_bar, data$average+0.04 , paste("%: ", data$perct, sep="") ,cex=1) 
 }
 
 
@@ -220,9 +239,9 @@ PlotUsoFacebookDepartamento <- function(index) {
 }
 
 
-################################################
-# plot 3d uso WhatsApp por departamento indice #
-################################################
+##############################################
+# plot  uso WhatsApp por departamento indice #
+##############################################
 
 PlotUsoWhatsAppIndiceDepartamento = function(indice_departamento, datos){
   proporciones <- c(datos$porcentage_WhatsApp_1[indice_departamento],
@@ -235,15 +254,28 @@ PlotUsoWhatsAppIndiceDepartamento = function(indice_departamento, datos){
   etiqueta_poco = as.character(format(round(proporciones[3] * 100, 2), nsmall = 2))
   etiqueta_nunca = as.character(format(round(proporciones[4] * 100, 2), nsmall = 2))
   etiqueta_na = as.character(format(round(proporciones[5] * 100, 2), nsmall = 2))
-  etiquetas <- c(paste("Alto ", etiqueta_alto , "%"), 
-                 paste("Medio ", etiqueta_medio , "%"),
-                 paste("Poco ", etiqueta_poco , "%"), 
-                 paste("Nunca ", etiqueta_nunca , "%"), 
-                 paste("N/A ", etiqueta_na , "%"))
-  dep_name <- val_label(datos$DOMDEPARTAMENTO, as.factor(datos$DOMDEPARTAMENTO[indice_departamento]))
-  pie3D(proporciones,labels=etiquetas,
-        explode=0.1,
-        main= paste("Uso WhatsApp en " ,dep_name))
+  porcentajes <- c(etiqueta_alto, etiqueta_medio, etiqueta_poco, etiqueta_nunca, etiqueta_na)
+  etiquetas <- c("Alto ",
+                 "Medio ",
+                 "Poco ", 
+                 "Nunca ", 
+                 "N/A ")
+  # plot
+  data <- data.frame(
+    name = etiquetas,
+    average = proporciones,
+    perct = porcentajes
+  )
+  
+  # Increase bottom margin
+  par(mar=c(6,4,4,4))
+  # Basic Barplot
+  my_bar <- barplot(data$average , border=F , names.arg=data$name , 
+                    las=2 , 
+                    col=c(rgb(0.3,0.1,0.4,0.6) , rgb(0.3,0.5,0.4,0.6) , rgb(0.3,0.9,0.4,0.6) ,  rgb(0.3,0.9,0.4,0.6),  rgb(0.3,0.2,0.2,0.2)) , 
+                    ylim=c(0,1) , 
+                    main="" )
+  text(my_bar, data$average+0.04 , paste("%: ", data$perct, sep="") ,cex=1) 
 }
 
 #Gráfico Pie 3d  del uso de Whatsapp segun departamento
@@ -253,9 +285,9 @@ PlotUsoWhatsAppDepartamento <- function(index) {
 }
 
 
-################################################
-# plot 3d uso Twitter por departamento indice #
-################################################
+##############################################
+# plot  uso Twitter por departamento indice #
+#############################################
 
 PlotUsoTwitterIndiceDepartamento = function(indice_departamento, datos){
   proporciones <- c(datos$porcentage_Twitter_1[indice_departamento],
@@ -268,15 +300,29 @@ PlotUsoTwitterIndiceDepartamento = function(indice_departamento, datos){
   etiqueta_poco = as.character(format(round(proporciones[3] * 100, 2), nsmall = 2))
   etiqueta_nunca = as.character(format(round(proporciones[4] * 100, 2), nsmall = 2))
   etiqueta_na = as.character(format(round(proporciones[5] * 100, 2), nsmall = 2))
-  etiquetas <- c(paste("Alto ", etiqueta_alto , "%"), 
-                 paste("Medio ", etiqueta_medio , "%"),
-                 paste("Poco ", etiqueta_poco , "%"), 
-                 paste("Nunca ", etiqueta_nunca , "%"), 
-                 paste("N/A ", etiqueta_na , "%"))
-  dep_name <- val_label(datos$DOMDEPARTAMENTO, as.factor(datos$DOMDEPARTAMENTO[indice_departamento]))
-  pie3D(proporciones,labels=etiquetas,
-        explode=0.1,
-        main= paste("Uso Twitter en " ,dep_name))
+  porcentajes <- c(etiqueta_alto, etiqueta_medio, etiqueta_poco, etiqueta_nunca, etiqueta_na)
+  etiquetas <- c("Alto ",
+                 "Medio ",
+                 "Poco ", 
+                 "Nunca ", 
+                 "N/A ")
+  # plot
+  data <- data.frame(
+    name = etiquetas,
+    average = proporciones,
+    perct = porcentajes
+  )
+  
+  # Increase bottom margin
+  par(mar=c(6,4,4,4))
+  # Basic Barplot
+  my_bar <- barplot(data$average , border=F , names.arg=data$name , 
+                    las=2 , 
+                    col=c(rgb(0.3,0.1,0.4,0.6) , rgb(0.3,0.5,0.4,0.6) , rgb(0.3,0.9,0.4,0.6) ,  rgb(0.3,0.9,0.4,0.6),  rgb(0.3,0.2,0.2,0.2)) , 
+                    ylim=c(0,1) , 
+                    main="" )
+  text(my_bar, data$average+0.04 , paste("%: ", data$perct, sep="") ,cex=1) 
+  
 }
 
 #Gráfico 3d PIE del uso de TWITTER segun departamento
@@ -285,9 +331,9 @@ PlotUsoTwitterDepartamento <- function(index) {
   PlotUsoTwitterIndiceDepartamento(index, data)
 }
 
-################################################
-# plot 3d uso Instagram por departamento indice #
-################################################
+###############################################
+# plot  uso Instagram por departamento indice #
+###############################################
 
 PlotUsoInstagramIndiceDepartamento = function(indice_departamento, datos){
   proporciones <- c(datos$porcentage_Instagram_1[indice_departamento],
@@ -300,15 +346,28 @@ PlotUsoInstagramIndiceDepartamento = function(indice_departamento, datos){
   etiqueta_poco = as.character(format(round(proporciones[3] * 100, 2), nsmall = 2))
   etiqueta_nunca = as.character(format(round(proporciones[4] * 100, 2), nsmall = 2))
   etiqueta_na = as.character(format(round(proporciones[5] * 100, 2), nsmall = 2))
-  etiquetas <- c(paste("Alto ", etiqueta_alto , "%"), 
-                 paste("Medio ", etiqueta_medio , "%"),
-                 paste("Poco ", etiqueta_poco , "%"), 
-                 paste("Nunca ", etiqueta_nunca , "%"), 
-                 paste("N/A ", etiqueta_na , "%"))
-  dep_name <- val_label(datos$DOMDEPARTAMENTO, as.factor(datos$DOMDEPARTAMENTO[indice_departamento]))
-  pie3D(proporciones,labels=etiquetas,
-        explode=0.1,
-        main= paste("Uso Instagram en " ,dep_name))
+  porcentajes <- c(etiqueta_alto, etiqueta_medio, etiqueta_poco, etiqueta_nunca, etiqueta_na)
+  etiquetas <- c("Alto ",
+                 "Medio ",
+                 "Poco ", 
+                 "Nunca ", 
+                 "N/A ")
+  # plot
+  data <- data.frame(
+    name = etiquetas,
+    average = proporciones,
+    perct = porcentajes
+  )
+  
+  # Increase bottom margin
+  par(mar=c(6,4,4,4))
+  # Basic Barplot
+  my_bar <- barplot(data$average , border=F , names.arg=data$name , 
+                    las=2 , 
+                    col=c(rgb(0.3,0.1,0.4,0.6) , rgb(0.3,0.5,0.4,0.6) , rgb(0.3,0.9,0.4,0.6) ,  rgb(0.3,0.9,0.4,0.6),  rgb(0.3,0.2,0.2,0.2)) , 
+                    ylim=c(0,1) , 
+                    main="" )
+  text(my_bar, data$average+0.04 , paste("%: ", data$perct, sep="") ,cex=1) 
 }
 
 #Gráfico de barra apiladas  del uso de Instagram segun departamento
@@ -316,7 +375,6 @@ PlotUsoInstagramDepartamento <- function(index) {
   data = CreateDFRedesSocialesTotalPorcentaje(datos)
   PlotUsoInstagramIndiceDepartamento(index, data)
 }
-
 
 ################################
 # Indice Uso de redes sociales #
