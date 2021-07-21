@@ -125,24 +125,29 @@ PlotUsoWhatsAppDepartamento(1)
 
 Se creó un índice de uso de Redes sociales entre el intervalo 0 a 1. Donde 0 significa que una persona no utiliza ninguna red social y 1 significa que utiliza con mucha frecuencia todas las redes sociales. Este índice se promedia por departamento. 
 
+La formula del indice esta dada por la siguiente formula donde $C18_1 = Uso de Facebook,C18_2 = Uso de Twitter,C18_3 = Uso de Whatsapp,C18_4 = Uso de Instagram, C18_5 = Uso de Linkedin, C18_6 = Uso de Facebook, C18_7 = Uso de Facebook $ tal que cada una de las variables se mueve entre un valor del 1 al 4. 
+$$ usoRedesSociales =  1 - ( (( ( C18_1 + C18_2 + C18_3 + C18_4 + C18_5 + C18_6 + C18_7) / 7 ) - 1 ) / 3 )  )$$
 ```{r echo=FALSE, fig.align='center', fig.cap= '\\label{fig:IndiceRedesSociales}Indice uso redes sociales segun departamento' }
 PlotIndiceUsoRedesSociales()
 ```
 
-En la Figura \ref{fig:IndiceRedesSociales} se puede observar que el índice de uso  de distintas redes sociales es de 0.5 en todos los departamentos. Con un uso de redes sociales homogéneo. Aunque se destacan la utilización de este índice en los departamento de Tacuarembó, Rivera, Paysandú, Colonia y Cerro Largo. Superando el uso en estos departamentos del interior al uso en  la capital, Montevideo. 
+En la Figura \ref{fig:IndiceRedesSociales} se puede observar que el índice de uso  de distintas redes sociales es de al menos 0.5 en todos los departamentos. Con un uso de redes sociales homogéneo. Aunque se destacan la utilización de este índice en los departamento de Tacuarembó, Rivera, Paysandú, Colonia y Cerro Largo. Superando el uso en estos departamentos del interior al uso en  la capital, Montevideo. 
 
 
 ```{r echo=FALSE, fig.align='center', fig.cap= '\\label{fig:HeatMapDepartamentos}Heatmap uso redes sociales segun departamento' }
 PlotHeatMapDepartamentosRedesSociales(1)
 ```
 
-```{r echo=FALSE, fig.align='center', fig.cap= '\\label{fig:HeatMapDepartamentosDenDep}Heatmap uso redes sociales segun departamento con dendograma por departamento.' }
+```{r echo=FALSE, fig.align='center', fig.cap= '\\label{fig:HeatMapDepartamentosDenDep}Heatmap uso redes sociales segun departamento con dendrograma por departamento.' }
 PlotHeatMapDepartamentosRedesSociales(2)
 ```
 
-```{r echo=FALSE, fig.align='center', fig.cap= '\\label{fig:HeatMapDepartamentosDenRed}Heatmap uso redes sociales segun departamento con dendograma por uso de redes sociales. ' }
+```{r echo=FALSE, fig.align='center', fig.cap= '\\label{fig:HeatMapDepartamentosDenRed}Heatmap uso redes sociales segun departamento con dendrograma por uso de redes sociales. ' }
 PlotHeatMapDepartamentosRedesSociales(3)
 ```
+
+En la Figura \ref{fig:HeatMapDepartamentos}  se muestra un Heatmap con las distintas interacciones de los departamentos y uso de redes sociales en Uruguay. En la Figura\ref{fig:HeatMapDepartamentosDenDep}  se realiza un dendrograma por departamento. Es interesante ver los grupos que se forman y sus interacciones con las redes sociales. Por una lado Paysandú el departamento con un mayor índice de uso de red social conforma un grupo solo.  Maldonado, Montevideo y Canelones conforman otro subgrupo, lo cual refleja un comportamiento similar en el uso de las redes.
+ En la Figura\ref{fig:HeatMapDepartamentosDenRed}  se muestra el mismo dendrograma organizado por los distintos usos de redes sociales. Whatsapp se muestra en un grupo como las más usadas junto Twitter la menos usada. Facebook se divide junto a Instagram en un uso alto y nulo respectivamente en otro subgrupo del dendrograma.  
 
 
 ## Comentarios finales
