@@ -376,6 +376,70 @@ PlotUsoInstagramDepartamento <- function(index) {
   PlotUsoInstagramIndiceDepartamento(index, data)
 }
 
+#####################################
+# HeatMap Uruguay por departamentos #
+#####################################
+
+PlotHeatMapDepartamentosRedesSociales <- function(option){
+  cluster_col = FALSE
+  cluster_row = FALSE
+  if (option == 2) {
+    # cluster por Departamento
+    cluster_row = TRUE
+  }else if (option == 3) {
+    cluster_col = TRUE
+  }
+  # crea el porcentaje de uso por redes sociales y convierte a matriz
+  data = CreateDFRedesSocialesTotalPorcentaje(datos)
+  mat_data = data.matrix(samp2[,1:ncol(samp2)])
+  mat_data = mat_data * 100
+  rownames(mat_data) = c("Montevideo",
+                         "Canelones",
+                         "Cerro Largo",
+                         "Colonia",
+                         "Durazno",
+                         "Florida",
+                         "Maldonado",
+                         "Paysandu",
+                         "Rio Negro",
+                         "Rivera",
+                         "Rocha",
+                         "San José",
+                         "Tacuarembó")
+  colnames(mat_data) = c(
+    "Facebook Alto",
+    "Facebook Medio",
+    "Facebook Poco",
+    "Facebook Nunca",
+    "Facebook N/A",
+    "WhatsApp Alto",
+    "WhatsApp Medio",
+    "WhatsApp Poco",
+    "WhatsApp Nunca",
+    "WhatsApp N/A",
+    "Twitter Alto",
+    "Twitter Medio",
+    "Twitter Poco",
+    "Twitter Nunca",
+    "Twitter N/A",
+    "Instagram Alto",
+    "Instagram Medio",
+    "Instagram Poco",
+    "Instagram Nunca",
+    "Instagram N/A"
+  )
+  pheatmap(mat_data, 
+           color = colorRampPalette(c("deepskyblue4", "goldenrod", "firebrick"))(100),
+           fontsize_col = 6,
+           show_rownames = T,
+           cluster_cols = cluster_col,
+           cluster_rows = cluster_row,
+           main = "Heatmap Uso Redes Sociales Por Departamento",
+           cutree_cols = 3,
+           cutree_rows = 3)
+  
+} 
+
 ################################
 # Indice Uso de redes sociales #
 ################################
