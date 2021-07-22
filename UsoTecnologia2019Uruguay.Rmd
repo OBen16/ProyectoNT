@@ -24,10 +24,12 @@ de la región en el mismo.
 Para hacer el análisis exploratorio de los datos se utilizan herramientas estadísticas como *R*, *Rstudio* y el paquete *shiny*. Mediante *shiny* se busca generar un entorno interactivo que permita modificar las relaciones planteadas a modo de lograr una mayor diversidad de estudio para 
 el usuario.
 
-Se organizó el documento en 3 enfoques principales: asociación del uso de redes sociales y su caracterización por departamentos, profundizar las razones por las que algunas personas no utilizan internet en la población, mostrar la incidencia en el uso de internet por nivel educativo.
+Se organizó el documento en 3 enfoques principales: la asociación del uso de redes sociales y su caracterización por departamentos, la comparación entre personas que usan internet y las que no y profundizar las razones por las que algunas personas no utilizan internet en la población, y mostrar la incidencia en el uso de internet por nivel educativo.
 
-Es importante tener en cuenta que este trabajo fue realizado con datos obtenidos en una muestra, pero esto no se tuvo en cuenta durante la exploración de los mismos. Los datos que se presentan son una analizis descriptivo de la muestra sin tomar en cuenta el disenio muestral ni los ponderadores estimados correspondientes para las proyecciones poblacionales desde la muestra. 
+Es importante tener en cuenta que este trabajo fue realizado con datos obtenidos en una muestra, pero esto no se tuvo en cuenta durante la exploración de los mismos. Los datos que se presentan son un análisis descriptivo de la muestra sin tomar en cuenta el diseño muestral ni los ponderadores estimados correspondientes para las proyecciones poblacionales desde la muestra. Además hay que aclarar que no hay datos de algunos departamentos.
 
+\newpage
+ 
 ## Datos
 
 Los datos utilizados para realizar este trabajo fueron obtenidos en la Encuesta de Uso de la Tecnología de la Información y Comunicaciones realizada por el INE (Instituto Nacional de Estadística) en el año 2019. Estos datos se pueden encontrar en la [\textcolor{blue}{página web del INE}](https://ine.gub.uy/web/guest/encuesta-de-uso-de-la-tecnologia-de-la-informacion-y-las-comunicaciones)^[https://ine.gub.uy/web/guest/encuesta-de-uso-de-la-tecnologia-de-la-informacion-y-las-comunicaciones].
@@ -40,6 +42,7 @@ En la siguiente tabla vemos la descripción de las variables utilizadas.
 tabvar()
 ```
 
+\newpage
 
 ## Análisis Exploratorio
 
@@ -154,6 +157,12 @@ PlotHeatMapDepartamentosRedesSociales(3)
 En la Figura \ref{fig:HeatMapDepartamentos}  se muestra un Heatmap con las distintas interacciones de los departamentos y uso de redes sociales en Uruguay. En la Figura\ref{fig:HeatMapDepartamentosDenDep}  se realiza un dendrograma por departamento. Es interesante ver los grupos que se forman y sus interacciones con las redes sociales. Por una lado Paysandú el departamento con un mayor índice de uso de red social conforma un grupo solo.  Maldonado, Montevideo y Canelones conforman otro subgrupo, lo cual refleja un comportamiento similar en el uso de las redes.
  En la Figura\ref{fig:HeatMapDepartamentosDenRed}  se muestra el mismo dendrograma organizado por los distintos usos de redes sociales. Whatsapp se muestra en un grupo como las más usadas junto Twitter la menos usada. Facebook se divide junto a Instagram en un uso alto y nulo respectivamente en otro subgrupo del dendrograma.  
 
+\newpage
+
+## Aplicación web
+  Para complementar el trabajo se realizó una aplicación web que contiene gráficos interactivos. Dicha fue creada utilizando el paquete *shiny* de *r*. 
+
+  Se decidió organizar la aplicación por secciones igual que el trabajo: la comparación de quienes usan internet y quienes no, nivel educativo, y redes sociales. La aplicación web está disponible en [\textcolor{blue}{este link}](https://oscarbentancur.shinyapps.io/ProyectoNT/)^[https://oscarbentancur.shinyapps.io/ProyectoNT/].
 
 ## Comentarios finales
 

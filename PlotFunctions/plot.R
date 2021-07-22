@@ -31,7 +31,7 @@ print(getwd())
 
 PlotRazonesNoUsoInternet <- function() {
   #Gráfico de barras de las razones por las que las personas no usan internet
-  ggplot(nousa,aes(x=fct_rev(fct_infreq(as.factor(C24))),fill=as.factor(C24)))+geom_bar(stat = "count")+scale_x_discrete(labels=c(
+  ggplot(nousa,aes(x=(fct_infreq(as.factor(C24))),group=as.factor(C24)))+geom_bar(stat = "count",aes(y = (..count..)/sum(..count..)))+scale_x_discrete(labels=c(
     "1"="No sabe como podria servirle",
     "2"="No sabe usarlo",
     "3"="No tiene dispositivos digitales",
@@ -42,20 +42,8 @@ PlotRazonesNoUsoInternet <- function() {
     "8"="Falta de conocimiento de idioma extranjero",
     "9"="Inseguro respecto al contenido",
     "10"="Le preocupa privacidad",
-    "11"="Otra"))+coord_flip()+labs(fill="Motivo de no uso",x="Razon",y="Cantidad")+scale_fill_brewer(palette="Paired",labels=c(
-      "1"="No sabe como podria servirle",
-      "2"="No sabe usarlo",
-      "3"="No tiene dispositivos digitales",
-      "4"="Le resulta caro",
-      "5"="No tiene tiempo",
-      "6"="Discapacidad",
-      "7"="No le interesa o no quiere",
-      "8"="Falta de conocimiento de idioma extranjero",
-      "9"="Inseguro respecto al contenido",
-      "10"="Le preocupa privacidad",
-      "11"="Otra"))+ 
-    stat_count(geom = "text",
-               aes(label = ..count..),position=position_stack(vjust=0.5))
+    "11"="Otra"))+labs(fill=NULL,x="Razon",y="Cantidad")+scale_fill_brewer(palette="Paired",labels=NULL)+scale_y_continuous(labels = scales::percent)+
+    theme(axis.text.x = element_text(angle = 270, vjust = 0))
 }
 
 #Boxplot de eded de las personas que usan internet y las que no
