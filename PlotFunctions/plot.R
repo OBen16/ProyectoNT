@@ -588,15 +588,7 @@ tabvar<-function(){
                                       "Frecuencia de uso de internet","Que tanto usa la persona el internet.",
                                       "Motivos de no uso de internet", "Razones de quienes no usan internet para no usarlo.",
                                       "Nivel educativo", "Nivel educativo alcanzado.",
-                                      "Frecuencia uso de internet en trabajo", "Que tanto usa la persona internet en el trabajo.",
-                                      "Frecuencia uso de Facebook", "Que tanto usa la persona la red. Se mide del 1 al 4 y 99 para N/A",
-                                      "Frecuencia uso de WhatsApp", "Que tanto usa la persona la red. Se mide del 1 al 4 y 99 para N/A",
-                                      "Frecuencia uso de Twitter", "Que tanto usa la persona la red. Se mide del 1 al 4 y 99 para N/A",
-                                      "Frecuencia uso de Instagram", "Que tanto usa la persona la red. Se mide del 1 al 4 y 99 para N/A",
-                                      "Frecuencia uso de Youtube", "Que tanto usa la persona la red. Se mide del 1 al 4 y 99 para N/A",
-                                      "Frecuencia uso de Linkedin", "Que tanto usa la persona la red. Se mide del 1 al 4 y 99 para N/A",
-                                      "Frecuencia uso de Otras", "Que tanto usa la persona otras redes. Se mide del 1 al 4 y 99 para N/A"
-                                      ),
+                                      "Frecuencia uso de internet en trabajo", "Que tanto usa la persona internet en el trabajo."),
                                     ncol=2, byrow = TRUE))
   colnames(tablavariables)<-c("Variable","Descripcion")
   print(xtable(tablavariables),include.rownames=FALSE)
