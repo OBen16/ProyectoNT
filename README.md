@@ -20,23 +20,39 @@ app.R
 
 ## Paquetes Requeridos
 
-```python
-import foobar
-
-# returns 'words'
-foobar.pluralize('word')
-
-# returns 'geese'
-foobar.pluralize('goose')
-
-# returns 'phenomenon'
-foobar.singularize('phenomena')
+Para el uso corrector asegurarse que estan instalados los siguientes packages
+```R
+library(haven)
+library(tidyverse)
+library(ggplot2)
+library(forcats)
+library(xtable)
+options(xtable.comment = FALSE)
+library(DT)
+#maps library's
+library(maps)
+library(dplyr)
+library(maptools)
+library(rgdal)
+library(here)
+library(plotly)
+# grafico pie
+library(scales)
+library(plotrix)
+#general
+library(labelled)
+library(ggmosaic)
+# heatmap
+library("pheatmap")
+require(ggplot2)
+require(colorspace)
+library(grid)
 ```
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+## Para contribuir al codigo
+Pedidos de Pull son bienvenidos. Para cambios mayores, por favor abrir un Issue primariamente para discutir el cambio. 
 
-Please make sure to update tests as appropriate.
+
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
